@@ -1,0 +1,10 @@
+{
+  "modid": "TestMod",
+  "name": "Test Mod",
+  "author_list": ["Axandros"],
+  "description": "Trying to make a simple mod",
+  "version": "0.1",
+  "sts_version": "03-29-2018",
+  "mts_version": "3.14.1",
+  "dependencies": ["basemod"]
+}
