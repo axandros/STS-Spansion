@@ -1,9 +1,9 @@
 {
-  "TestMod:TestRelic":{
+  "Spansion:TestRelic":{
     "NAME": "Test Energy Relic",
     "FLAVOR": "No, snake not friend!",
   "DESCRIPTIONS": [
     "Gain 1 energy ."
-  ]
-  }
+]
+}
 }

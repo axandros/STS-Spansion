@@ -1,8 +1,8 @@
 {
-  "modid": "TestMod",
-  "name": "Test Mod",
+  "modid": "Spansion",
+  "name": "'Spansion",
   "author_list": ["Axandros"],
-  "description": "Trying to make a simple mod",
+  "description": "A small expansion to Slay the Spire that adds new cards, relics, and events!",
   "version": "0.1",
   "sts_version": "03-29-2018",
   "mts_version": "3.14.1",

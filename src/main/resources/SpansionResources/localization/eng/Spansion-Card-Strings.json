@@ -1,0 +1,15 @@
+{
+  "Spansion:OldOneTwo": {
+    "NAME": "The Ol' One-Two",
+    "DESCRIPTION": "Deal !D! Damage."
+  },
+  "Spansion:FancyFootwork": {
+    "NAME": "Fancy Footwork",
+    "DESCRIPTION": "If the enemy intend to attack, gain !B! Block.  Otherwise draw !M! Card(s)."
+  },
+  "Spansion:TestPower": {
+    "NAME": "Test Power",
+    "DESCRIPTION": "Gain !M! Strength.",
+    "UPGRADE_DESCRIPTION": "Gain !M! Strength."
+  }
+}

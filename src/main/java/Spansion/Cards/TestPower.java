@@ -1,6 +1,6 @@
-package TestMod.Cards;
+package Spansion.Cards;
 
-import TestMod.TestMod;
+import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import basemod.devcommands.power.Power;
 import basemod.helpers.BaseModCardTags;
@@ -14,11 +14,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import static TestMod.TestMod.makeCardPath;
+import static Spansion.Spansion.makeCardPath;
 
 public class TestPower extends CustomCard {
 
-    public static final String ID = TestMod.makeID(TestPower.class.getSimpleName());
+    public static final String ID = Spansion.makeID(TestPower.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("Power.png");

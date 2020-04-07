@@ -1,4 +1,4 @@
-package TestMod.util;
+package Spansion.util;
 
 public class IDCheckDontTouchPls {
     public String DEFAULTID;
