@@ -1,0 +1,28 @@
+Orbs
+Toxic Orb
+    Passive : At the start of your turn, apply 2 poison to a random enemy.
+    Evoke   : Apply 3 poison to a random enemy, then trigger ALL poison.
+
+Cards
+    Colorless:
+        "The Old One-Two" - Attack - 1 - Deal 5 damage twice, applying 1 vulnerable each time.
+        "Fancy Footwork" - Skill - 1 - If the enemy intends to attack, gain 8 block.  Otherwise draw a card.
+        "" - Power - Every time you play a card, gain 1 temporary strength and 1 temporary dexterity.
+    Red:
+        "Wrathful Strike" - Attack - 2 - Deal 1 damage.  Increase this value by 1 every time you take damage (on your turn).
+        "Visions of Pain" - Skill - 1 - Take 3 Damage, Draw 2.
+        "Cauterizing Blood" - Power - 3 - At the end of your turn, heal for half of the damage you've taken this turn, rounded down.
+    Green:
+        "Feint Attack" - Attack - Discard a card.  Deal 10 damage.  Gain 4 block next turn.
+        "Evasive Maneuvers" - Gain 10 block.  If this is discarded by a card effect, gain 1 Dexterity.
+        "On the Fly" - Whenever you discard a card, deal damage to a random enemy equal to the cost of the discarded card plus 1.
+    Blue:
+        "Lethal Injection" - Attack - 1 - Deal 3 damage.  Gain a Toxic Orb.  Increase this damage by 2 for every 0 cost card played this turn.
+        "Toxic Emissions" - Skill - 1 - Apply 1 weak and 1 poison to all enemies.
+        "Archaic Fuel" - Power - 2 - Whenever you exhaust a card, channel a Toxic Orb.
+    Purple:
+        # Not sure about these. I didn't have a particular strategy in mind when I came up with these.
+        # Question - How to make custom stances?
+        "One Thousand Strikes" - Attack - 1 - Deal 8 damage.  If this is in your hand at the end of your turn, add a copy to your discard pile.
+        "Fervent Prayer" - Skill - 1 - Add a Miracle to your discard pile.
+        "Hopeful Vision" - Power - 2 - When ever you Scry, gain 2 Mantra.

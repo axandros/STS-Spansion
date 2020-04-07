@@ -1,5 +1,6 @@
-package TestMod.Cards;
+package Spansion.Cards;
 
+import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -10,9 +11,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import TestMod.TestMod;
 
-import static TestMod.TestMod.makeCardPath;
+import static Spansion.Spansion.makeCardPath;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
 // Skip this question until you start figuring out the AbstractDefaultCard/AbstractDynamicCard and just extend DynamicCard
 // for your own ones like all the other cards.
@@ -23,7 +23,7 @@ import static TestMod.TestMod.makeCardPath;
 // Abstract Dynamic Card builds up on Abstract Default Card even more and makes it so that you don't need to add
 // the NAME and the DESCRIPTION into your card - it'll get it automatically. Of course, this functionality could have easily
 // Been added to the default card rather than creating a new Dynamic one, but was done so to deliberately.
-public class TestAttack extends CustomCard {
+public class OldOneTwo extends CustomCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -33,7 +33,7 @@ public class TestAttack extends CustomCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = TestMod.makeID(TestAttack.class.getSimpleName());
+    public static final String ID = Spansion.makeID(OldOneTwo.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("Attack.png");
@@ -68,7 +68,7 @@ public class TestAttack extends CustomCard {
 
     // /STAT DECLARATION/
 
-    public TestAttack() {
+    public OldOneTwo() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         // Aside from baseDamage/MagicNumber/Block there's also a few more.

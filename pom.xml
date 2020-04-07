@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
 
     <name>Spansion.Spansion</name>
-    <description>We are making a fun mod together!</description>
+    <description>A small expansion to Slay the Spire, adding new cards, relics, and events!</description>
 
     <dependencies>
         <dependency>
@@ -54,7 +54,7 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <copy file="target/Spansion.jar" tofile="E:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\Spansion.jar"/>
+                                <copy file="target/Spansion.jar" tofile="C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\Spansion.jar"/>
                             </target>
                         </configuration>
                         <goals>
