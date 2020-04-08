@@ -1,7 +1,7 @@
 {
   "Spansion:OldOneTwo": {
     "NAME": "The Ol' One-Two",
-    "DESCRIPTION": "Deal !D! Damage."
+    "DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit."
   },
   "Spansion:FancyFootwork": {
     "NAME": "Fancy Footwork",
