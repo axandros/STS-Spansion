@@ -35,9 +35,10 @@ public class AspectOfTheCrow extends CustomCard {
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.POWER;
     public static final AbstractCard.CardColor COLOR = AbstractCard.CardColor.COLORLESS;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     private static final int UPGRADE_PLUS_STACK = 1;
+    private static final int UPGRADED_COST = 1;
 
     public AspectOfTheCrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -57,8 +58,8 @@ public class AspectOfTheCrow extends CustomCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //upgradeBaseCost(0);
-            upgradeMagicNumber(UPGRADE_PLUS_STACK);
+            upgradeBaseCost(UPGRADED_COST);
+            //upgradeMagicNumber(UPGRADE_PLUS_STACK);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
