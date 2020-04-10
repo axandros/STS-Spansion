@@ -7,7 +7,7 @@ Cards
     Colorless:
         "The Old One-Two" - Attack - 1 - Deal 5 damage twice, applying 1 vulnerable each time.
         "Fancy Footwork" - Skill - 1 - If the enemy intends to attack, gain 8 block.  Otherwise draw a card.
-        "" - Power - Every time you play a card, gain 1 temporary strength and 1 temporary dexterity.
+        "Aspect of the Crow" - Power - Every time you play a card, gain 1 temporary strength and 1 temporary dexterity.
     Red:
         "Wrathful Strike" - Attack - 2 - Deal 1 damage.  Increase this value by 1 every time you take damage (on your turn).
         "Visions of Pain" - Skill - 1 - Take 3 Damage, Draw 2.

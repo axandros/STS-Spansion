@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -69,6 +70,10 @@ public class Spansion implements PostExhaustSubscriber,
 
     public static String makeRelicPath(String resourcePath){
         return getModID() + "Resources/images/relics/" + resourcePath;
+    }
+
+    public static String makePowerPath(String resourcePath){
+        return getModID() + "Resources/images/powers/" + resourcePath;
     }
 
     public static String makeRelicOutlinePath(String resourcePath) {
@@ -149,7 +154,7 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new OldOneTwo());
         BaseMod.addCard(new FancyFootwork());
         logger.info("Spansion: Loading TestPower.");
-        BaseMod.addCard(new TestPower());
+        BaseMod.addCard(new AspectOfTheCrow());
         logger.info("Spansion: Loaded TestPower.");
     }
 
@@ -237,8 +242,8 @@ public class Spansion implements PostExhaustSubscriber,
                 getModID() + "Resources/localization/eng/Spansion-Card-Strings.json");
 
         // PowerStrings
-        //BaseMod.loadCustomStringsFile(PowerStrings.class,
-        //        getModID() + "Resources/localization/eng/Spansion-Power-Strings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Power-Strings.json");
 
         // RelicStrings
         logger.info("Spansion Starting Relic String load.");
