@@ -65,10 +65,21 @@ public class AspectOfTheCrowPower extends AbstractPower implements CloneablePowe
 
         if (count > 0) {
             flash(); // Makes the power icon flash.
+                // Current System
                 AbstractDungeon.actionManager.addToBottom(
                         new ReducePowerAction(owner, owner, DexterityPower.POWER_ID, count));
                 AbstractDungeon.actionManager.addToBottom(
                         new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, count));
+                // Original System
+            /*
+            for(int i = 0; i < count; i++){
+                AbstractDungeon.actionManager.addToBottom(
+                        new ReducePowerAction(owner, owner, DexterityPower.POWER_ID, 1));
+                AbstractDungeon.actionManager.addToBottom(
+                        new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, 1));
+            }
+
+             */
         }
 
     }
