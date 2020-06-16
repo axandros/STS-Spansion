@@ -1,0 +1,5 @@
+"Hag" - Act 2
+Deals Damage and inflicts debuffs.
+Starts with 3 Curse of ~: 'Gain 1 weak and 1 frail each turn.'  Decreases by 1 each turn.
+If the Hag is killed while the curse is active, a curse is permanantly added to the player's deck.
+-> Purpose of encounter: Slow the player down.  Soft-Prevent blowing through the encounter too quickly.

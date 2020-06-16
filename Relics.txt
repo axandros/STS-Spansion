@@ -1,0 +1,5 @@
+Demon Sphere
+    - Gain 1 extra energy each turn.  Start with 2 burns in your deck.
+    "An extremely powerful core found in the spire.  It contains a burning energy."
+    Image: To halves of a metallic sphere, separated by a small gap.
+    > https://en.wikipedia.org/wiki/Demon_core
