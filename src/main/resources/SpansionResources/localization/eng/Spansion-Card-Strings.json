@@ -1,11 +1,19 @@
 {
-  "Spansion:OldOneTwo": {
-    "NAME": "The Ol' One-Two",
-    "DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit."
+  "Spansion:EvasiveManeuvers": {
+    "NAME": "Evasive Maneuvers",
+    "DESCRIPTION": "Gain !B! Block.  If this card is discarded, gain !M! Dexterity."
   },
   "Spansion:FancyFootwork": {
     "NAME": "Fancy Footwork",
     "DESCRIPTION": "If the enemy intend to attack, gain !B! Block.  Otherwise draw !M! Card(s)."
+  },
+  "Spansion:FeintAttack": {
+    "NAME": "Feint Attack",
+    "DESCRIPTION": "Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn."
+  },
+  "Spansion:OldOneTwo": {
+    "NAME": "The Ol' One-Two",
+    "DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit."
   },
   "Spansion:TestPower": {
     "NAME": "Test Power",

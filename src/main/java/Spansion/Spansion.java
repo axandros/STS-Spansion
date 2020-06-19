@@ -148,8 +148,10 @@ public class Spansion implements PostExhaustSubscriber,
         logger.info("Spansion: Loading Cards.");
         BaseMod.addCard(new OldOneTwo());
         BaseMod.addCard(new FancyFootwork());
-        logger.info("Spansion: Loading TestPower.");
         BaseMod.addCard(new TestPower());
+        // Green
+        BaseMod.addCard(new FeintAttack());
+        BaseMod.addCard(new EvasiveManeuvers());
         logger.info("Spansion: Loaded TestPower.");
     }
 
