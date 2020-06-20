@@ -17,7 +17,7 @@ public class OnTheFly extends CustomCard {
     public static final String ID = Spansion.makeID(OnTheFly.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = makeCardPath("Power.png");
+    public static final String IMG = makeCardPath("OnTheFly.png");
 
 
     public static final String NAME = cardStrings.NAME;
@@ -38,16 +38,9 @@ public class OnTheFly extends CustomCard {
 
     private static final int UPGRADE_MINUS_COST = 1;
 
-    // Hey want a second damage/magic/block/unique number??? Great!
-    // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
-    // that's how you get your own custom variable that you can use for anything you like.
-    // Feel free to explore other mods to see what variabls they personally have and create your own ones.
-
-    // /STAT DECLARATION/
-
     public OnTheFly() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 2;
+        magicNumber = baseMagicNumber = 1;
     }
 
     // Actions the card should do.

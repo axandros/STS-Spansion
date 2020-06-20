@@ -1,1 +1,8 @@
-{}
+{
+  "Spansion:OnTheFlyPower": {
+    "NAME": "On The Fly",
+    "DESCRIPTIONS": [
+        "Deal damage to a random enemy when you discard a card."
+    ]
+  }
+}
