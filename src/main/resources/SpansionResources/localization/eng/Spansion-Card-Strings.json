@@ -15,6 +15,10 @@
     "NAME": "The Ol' One-Two",
     "DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit."
   },
+  "Spansion:OnTheFly": {
+    "NAME": "On The Fly",
+    "DESCRIPTION": "When you discard a card, deal Damage to a random enemy equal to the cost of the card."
+  },
   "Spansion:TestPower": {
     "NAME": "Test Power",
     "DESCRIPTION": "Gain !M! Strength.",

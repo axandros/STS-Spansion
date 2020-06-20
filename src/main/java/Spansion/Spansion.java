@@ -75,6 +75,10 @@ public class Spansion implements PostExhaustSubscriber,
         return getModID() + "Resources/images/relics/outline/" + resourcePath;
     }
 
+    public static String makePowerPath(String resourcePath) {
+        return getModID() + "Resources/images/powers/" + resourcePath;
+    }
+
     // === Subscribe and Initialize ===
 
     public Spansion() {
@@ -146,12 +150,13 @@ public class Spansion implements PostExhaustSubscriber,
     @Override
     public void receiveEditCards() {
         logger.info("Spansion: Loading Cards.");
-        BaseMod.addCard(new OldOneTwo());
-        BaseMod.addCard(new FancyFootwork());
-        BaseMod.addCard(new TestPower());
+        //BaseMod.addCard(new OldOneTwo());
+        //BaseMod.addCard(new FancyFootwork());
+        //BaseMod.addCard(new TestPower());
         // Green
         BaseMod.addCard(new FeintAttack());
         BaseMod.addCard(new EvasiveManeuvers());
+        BaseMod.addCard(new OnTheFly());
         logger.info("Spansion: Loaded TestPower.");
     }
 
