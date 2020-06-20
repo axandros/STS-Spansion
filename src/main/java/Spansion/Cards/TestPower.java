@@ -42,13 +42,6 @@ public class TestPower extends CustomCard {
 
     private static final int UPGRADE_MINUS_COST = 1;
 
-    // Hey want a second damage/magic/block/unique number??? Great!
-    // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
-    // that's how you get your own custom variable that you can use for anything you like.
-    // Feel free to explore other mods to see what variabls they personally have and create your own ones.
-
-    // /STAT DECLARATION/
-
     public TestPower() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = 2;

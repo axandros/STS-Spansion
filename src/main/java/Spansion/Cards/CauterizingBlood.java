@@ -56,7 +56,7 @@ public class CauterizingBlood extends CustomCard {
         if (!upgraded) {
             upgradeName();
             upgradeBaseCost(UPGRADED_COST);
-            upgradeMagicNumber(UPGRADE_MINUS_COST);
+            //upgradeMagicNumber(UPGRADE_MINUS_COST);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
