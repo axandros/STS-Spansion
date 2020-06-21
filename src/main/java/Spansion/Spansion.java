@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -149,15 +150,18 @@ public class Spansion implements PostExhaustSubscriber,
 
     @Override
     public void receiveEditCards() {
-        logger.info("Spansion: Loading Cards.");
-        //BaseMod.addCard(new OldOneTwo());
-        //BaseMod.addCard(new FancyFootwork());
-        //BaseMod.addCard(new TestPower());
-        // Green
+        logger.info("Spansion: Loading Colorless Cards.");
+        BaseMod.addCard(new OldOneTwo());
+        BaseMod.addCard(new FancyFootwork());
+        BaseMod.addCard(new AspectOfTheCrow());
+        logger.info("Spansion: Loading Red Cards.");
+        BaseMod.addCard(new WrathfulStrike());
+        BaseMod.addCard(new CauterizingBlood());
+        BaseMod.addCard(new VisionsOfPain());
+        logger.info("Spansion: Loading Green Cards.");
         BaseMod.addCard(new FeintAttack());
         BaseMod.addCard(new EvasiveManeuvers());
         BaseMod.addCard(new OnTheFly());
-        logger.info("Spansion: Loaded TestPower.");
     }
 
     // === Add Relics ===
@@ -244,8 +248,8 @@ public class Spansion implements PostExhaustSubscriber,
                 getModID() + "Resources/localization/eng/Spansion-Card-Strings.json");
 
         // PowerStrings
-        //BaseMod.loadCustomStringsFile(PowerStrings.class,
-        //        getModID() + "Resources/localization/eng/Spansion-Power-Strings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Power-Strings.json");
 
         // RelicStrings
         logger.info("Spansion Starting Relic String load.");
