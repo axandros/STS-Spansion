@@ -1,5 +1,6 @@
 package Spansion.Cards;
 
+import Spansion.Powers.CauterizingBloodPower;
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -9,13 +10,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.MagicFlower;
 
 import static Spansion.Spansion.makeCardPath;
 
 public class CauterizingBlood extends CustomCard {
     // "Cauterizing Blood" - Power - 3 - At the end of your turn, heal for half of the damage you've taken this turn, rounded down.
 
-    public static final String ID = Spansion.makeID(TestPower.class.getSimpleName());
+    public static final String ID = Spansion.makeID(CauterizingBlood.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("CauterizingBlood.png");
@@ -35,18 +37,19 @@ public class CauterizingBlood extends CustomCard {
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.POWER;
     public static final AbstractCard.CardColor COLOR = AbstractCard.CardColor.RED;
 
-    private static final int COST = 3;
-    private static final int UPGRADED_COST = 2;
+    private static final int COST = 1;
+    private static final int UPGRADED_COST = 1;
 
     public CauterizingBlood() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        baseMagicNumber = magicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(p, p, new com.megacrit.cardcrawl.powers.StrengthPower(p, baseMagicNumber), baseMagicNumber)
+                new ApplyPowerAction(p, p, new CauterizingBloodPower(p, p, baseMagicNumber), baseMagicNumber)
         );
     }
 

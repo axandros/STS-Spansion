@@ -15,7 +15,7 @@ import static Spansion.Spansion.makeCardPath;
 
 public class VisionsOfPain extends CustomCard {
     //"Visions of Pain" - Skill - 1 - Take 3 Damage, Draw 2.
-    public static final String ID = Spansion.makeID(FancyFootwork.class.getSimpleName());
+    public static final String ID = Spansion.makeID(VisionsOfPain.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("VisionsOfPain.png");

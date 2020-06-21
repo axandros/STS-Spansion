@@ -19,7 +19,7 @@ public class WrathfulStrike extends CustomCard{
     // "Wrathful Strike" - Attack - 2 - Deal 1 damage.  Increase this value by 1 every time you take damage (on your turn).
     // TODO: How to count the number of times damaged on own turn?
 
-    public static final String ID = Spansion.makeID(OldOneTwo.class.getSimpleName());
+    public static final String ID = Spansion.makeID(WrathfulStrike.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("WrathfulStrike.png");
@@ -46,6 +46,8 @@ public class WrathfulStrike extends CustomCard{
 
         tags.add(CardTags.STRIKE);
     }
+
+
 
     // Actions the card should do.
     @Override

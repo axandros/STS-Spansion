@@ -11,5 +11,17 @@
     "NAME": "Test Power",
     "DESCRIPTION": "Gain !M! Strength.",
     "UPGRADE_DESCRIPTION": "Gain !M! Strength."
+  },
+  "Spansion:CauterizingBlood": {
+    "NAME": "Cauterizing Blood",
+    "DESCRIPTION": "At the end of your turn, heal for half the damage you took on your turn."
+  },
+  "Spansion:VisionsOfPain": {
+    "NAME": "Visions Of Pain",
+    "DESCRIPTION": "Take !D! Damage.  Draw !M! Cards"
+  },
+  "Spansion:WrathfulStrike": {
+    "NAME": "Wrathful Strike",
+    "DESCRIPTION": "Deal !D! damage.  Increases by !M! every time you take damage on your turn."
   }
 }
