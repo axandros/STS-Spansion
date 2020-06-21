@@ -11,5 +11,17 @@
     "NAME": "Aspect Of The Crow",
     "DESCRIPTION": "When you play a card, gain !M! strength and dexterity.  Lose that strength and dexterity at the end of your turn.",
     "UPGRADE_DESCRIPTION": "When you play a card, gain !M! strength and dexterity.  Lose that strength and dexterity at the end of your turn."
+  },
+  "Spansion:CauterizingBlood": {
+    "NAME": "Cauterizing Blood",
+    "DESCRIPTION": "At the end of your turn, heal for half the damage you took on your turn."
+  },
+  "Spansion:VisionsOfPain": {
+    "NAME": "Visions Of Pain",
+    "DESCRIPTION": "Take !D! Damage.  Draw !M! Cards"
+  },
+  "Spansion:WrathfulStrike": {
+    "NAME": "Wrathful Strike",
+    "DESCRIPTION": "Deal !D! damage.  Increases by !M! every time you take damage on your turn."
   }
 }
