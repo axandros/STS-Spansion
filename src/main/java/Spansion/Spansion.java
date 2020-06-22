@@ -80,6 +80,10 @@ public class Spansion implements PostExhaustSubscriber,
         return getModID() + "Resources/images/powers/" + resourcePath;
     }
 
+    public static String makeOrbPath(String resourcePath) {
+        return getModID() + "Resources/images/orbs/" + resourcePath;
+    }
+
     // === Subscribe and Initialize ===
 
     public Spansion() {
