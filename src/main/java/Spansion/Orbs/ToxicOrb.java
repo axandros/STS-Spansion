@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
@@ -59,7 +60,7 @@ public class ToxicOrb extends AbstractOrb {
     @Override
     public void updateDescription() {
         applyFocus();
-        description = DESC[0] + evokeAmount + DESC[1] + passiveAmount + DESC[2];
+        description = DESC[0] + passiveAmount + DESC[1] + DESC[2] + evokeAmount;
     }
 
     @Override
@@ -70,9 +71,10 @@ public class ToxicOrb extends AbstractOrb {
 
     @Override
     public void onEvoke() {
+        AbstractMonster mon = AbstractDungeon.getRandomMonster();
         AbstractPlayer player = AbstractDungeon.player;
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction( AbstractDungeon.getRandomMonster(), player, new PoisonPower(player, player, evokeAmount))
+                new ApplyPowerAction( mon, player, new PoisonPower(mon, player, evokeAmount))
         );
         // TODO: Is there a way to trigger all poison now?
 
@@ -82,15 +84,16 @@ public class ToxicOrb extends AbstractOrb {
     }
 
     @Override
-    public void onStartOfTurn() {
+    public void onEndOfTurn() {
         // Passive
+        AbstractMonster mon = AbstractDungeon.getRandomMonster();
         AbstractDungeon.actionManager.addToBottom(
                 new VFXAction( new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA),0.1f)
         );
 
         AbstractPlayer player = AbstractDungeon.player;
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction( AbstractDungeon.getRandomMonster(), player, new PoisonPower(player, player, passiveAmount))
+                new ApplyPowerAction( mon, player, new PoisonPower(mon, player, passiveAmount))
         );
     }
 
@@ -104,8 +107,6 @@ public class ToxicOrb extends AbstractOrb {
             vfxTimer = MathUtils.random(vfxIntervalMin, vfxIntervalMax);
         }
     }
-
-
 
     @Override
     public void render(SpriteBatch sb) {

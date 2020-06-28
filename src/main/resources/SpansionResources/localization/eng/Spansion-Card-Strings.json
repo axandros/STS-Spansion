@@ -35,5 +35,9 @@
   "Spansion:FeintAttack": {
     "NAME": "Feint Attack",
     "DESCRIPTION": "Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn."
+  },
+  "Spansion:LethalInjection": {
+    "NAME": "Lethal Injection",
+    "DESCRIPTION": "Deal !D! Damage.  Channel a Toxic Orb."
   }
 }

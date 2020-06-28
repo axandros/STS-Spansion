@@ -1,10 +1,12 @@
 package Spansion.Cards;
 
+import Spansion.Orbs.ToxicOrb;
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -50,8 +52,7 @@ public class LethalInjection extends CustomCard {
                 new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
                         AbstractGameAction.AttackEffect.POISON));
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(m, p, new PoisonPower(p, p, magicNumber)
-                , magicNumber)
+                new ChannelAction(new ToxicOrb())
         );
     }
 
