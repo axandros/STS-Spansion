@@ -169,6 +169,7 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new OnTheFly());
         logger.info("Spansion: Loading Blue Cards.");
         BaseMod.addCard(new LethalInjection());
+        BaseMod.addCard(new ToxicEmissions());
     }
 
     // === Add Relics ===

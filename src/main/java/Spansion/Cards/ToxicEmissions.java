@@ -52,9 +52,11 @@ public class ToxicEmissions extends CustomCard {
         ArrayList<AbstractMonster> mons = AbstractDungeon.getCurrRoom().monsters.monsters;
         for(int i = 0; i < mons.size(); i++) {
             m = mons.get(i);
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WeakPower(m, magicNumber, false)));
-            AbstractDungeon.actionManager.addToBottom(new ChannelAction(new ToxicOrb()));
+            if(m.currentHealth > 0 && !(m.isPlayer)) {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
+            }
         }
+        AbstractDungeon.actionManager.addToBottom(new ChannelAction(new ToxicOrb()));
     }
 
     // Upgraded stats.

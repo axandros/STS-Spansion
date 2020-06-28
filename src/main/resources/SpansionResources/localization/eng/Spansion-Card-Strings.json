@@ -39,5 +39,9 @@
   "Spansion:LethalInjection": {
     "NAME": "Lethal Injection",
     "DESCRIPTION": "Deal !D! Damage.  Channel a Toxic Orb."
+  },
+  "Spansion:ToxicEmissions": {
+    "NAME": "Toxic Emissions",
+    "DESCRIPTION": "Inflict !M! weak on all enemies.  Channel 1 Toxic Orb."
   }
 }
