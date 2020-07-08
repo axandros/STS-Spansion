@@ -15,9 +15,9 @@ Requires Slay the Spire's *desktop-1.0.jar*, Mod-TheSpire, and Basemod libraries
 > ${basedir}/../lib/*
 
 ## Project Status
-Currenlty implementing cards for the characters.
-Looking in to relic design for the next step, then moving on to events.
-New Encounters are planned, but will not likely be done for a while.
+Currently implementing cards for the characters.
+Looking into relic design for the next step, then moving on to events.
+New encounters are planned, but will not likely be done for a while.
 
 ## Sources
 * [The Default](https://github.com/Gremious/StS-DefaultModBase/wiki)
