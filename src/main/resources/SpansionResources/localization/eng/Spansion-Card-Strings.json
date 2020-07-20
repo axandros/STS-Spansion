@@ -43,5 +43,9 @@
   "Spansion:ToxicEmissions": {
     "NAME": "Toxic Emissions",
     "DESCRIPTION": "Inflict !M! weak on all enemies.  Channel 1 Toxic Orb."
+  },
+  "Spansion:ArchaicFuel": {
+    "NAME": "Archaic Fuel",
+    "DESCRIPTION": "When you exhaust a card, channel 1 Toxic Orb."
   }
 }

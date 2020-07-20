@@ -11,5 +11,12 @@
       "Gain #b",
       "temporary strength and Dexterity when you play a card."
     ]
+  },
+  "Spansion:ArchaicFuelPower": {
+    "NAME": "Archaic Fuel",
+    "DESCRIPTIONS": [
+      "When you exhaust a card, channel ",
+      " Toxic Orbs."
+    ]
   }
 }
