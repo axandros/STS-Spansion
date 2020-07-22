@@ -7,10 +7,10 @@
     "NAME": "Fancy Footwork",
     "DESCRIPTION": "If the enemy intend to attack, gain !B! Block.  Otherwise draw !M! Card(s)."
   },
-  "Spansion:TestPower": {
-    "NAME": "Test Power",
-    "DESCRIPTION": "Gain !M! Strength.",
-    "UPGRADE_DESCRIPTION": "Gain !M! Strength."
+  "Spansion:AspectOfTheCrow": {
+    "NAME": "Aspect Of The Crow",
+    "DESCRIPTION": "When you play a card, gain !M! strength and dexterity.  Lose that strength and dexterity at the end of your turn.",
+    "UPGRADE_DESCRIPTION": "When you play a card, gain !M! strength and dexterity.  Lose that strength and dexterity at the end of your turn."
   },
   "Spansion:CauterizingBlood": {
     "NAME": "Cauterizing Blood",
@@ -23,5 +23,17 @@
   "Spansion:WrathfulStrike": {
     "NAME": "Wrathful Strike",
     "DESCRIPTION": "Deal !D! damage.  Increases by !M! every time you take damage on your turn."
+  },
+  "Spansion:EvasiveManeuvers": {
+    "NAME": "Evasive Maneuvers",
+    "DESCRIPTION": "Gain !B! Block.  If this card is discarded, gain !M! Dexterity."
+  },
+  "Spansion:OnTheFly": {
+    "NAME": "On The Fly",
+    "DESCRIPTION": "When you discard a card, deal Damage to a random enemy equal to the cost of the card."
+  },
+  "Spansion:FeintAttack": {
+    "NAME": "Feint Attack",
+    "DESCRIPTION": "Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn."
   }
 }

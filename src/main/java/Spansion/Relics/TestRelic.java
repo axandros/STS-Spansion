@@ -26,6 +26,8 @@ public class TestRelic extends CustomRelic {
         flash();
     }
 
+
+
     // Gain 1 energy on equip.
     @Override
     public void onEquip() {
@@ -43,6 +45,5 @@ public class TestRelic extends CustomRelic {
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
     }
-
 
 }

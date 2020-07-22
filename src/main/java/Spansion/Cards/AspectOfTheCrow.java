@@ -2,9 +2,6 @@ package Spansion.Cards;
 
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
-import basemod.devcommands.power.Power;
-import basemod.helpers.BaseModCardTags;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,13 +9,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Spansion.Spansion.makeCardPath;
+import Spansion.Powers.AspectOfTheCrowPower;
 
-public class TestPower extends CustomCard {
-
-    public static final String ID = Spansion.makeID(TestPower.class.getSimpleName());
+public class AspectOfTheCrow extends CustomCard {
+    // "Aspect of the Crow" - Power - Every time you play a card, gain 1 temporary strength and 1 temporary dexterity.
+    public static final String ID = Spansion.makeID(AspectOfTheCrow.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("Power.png");
@@ -38,20 +35,21 @@ public class TestPower extends CustomCard {
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.POWER;
     public static final AbstractCard.CardColor COLOR = AbstractCard.CardColor.COLORLESS;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
-    private static final int UPGRADE_MINUS_COST = 1;
+    private static final int UPGRADE_PLUS_STACK = 1;
+    private static final int UPGRADED_COST = 1;
 
-    public TestPower() {
+    public AspectOfTheCrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        magicNumber = baseMagicNumber = 2;
+        magicNumber = baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(p, p, new com.megacrit.cardcrawl.powers.StrengthPower(p, baseMagicNumber), baseMagicNumber)
+                new ApplyPowerAction(p, p, new AspectOfTheCrowPower(p,p, baseMagicNumber), baseMagicNumber)
         );
     }
 
@@ -60,8 +58,8 @@ public class TestPower extends CustomCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
-            upgradeMagicNumber(UPGRADE_MINUS_COST);
+            upgradeBaseCost(UPGRADED_COST);
+            //upgradeMagicNumber(UPGRADE_PLUS_STACK);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }

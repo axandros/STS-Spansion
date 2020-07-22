@@ -155,16 +155,18 @@ public class Spansion implements PostExhaustSubscriber,
 
     @Override
     public void receiveEditCards() {
-        logger.info("Spansion: Loading Cards.");
-        //BaseMod.addCard(new OldOneTwo());
-        //BaseMod.addCard(new FancyFootwork());
-        logger.info("Spansion: Loading TestPower.");
-        //BaseMod.addCard(new TestPower());
-        logger.info("Spansion: Loaded TestPower.");
-        // RED
-        BaseMod.addCard(new CauterizingBlood());
+        logger.info("Spansion: Loading Colorless Cards.");
+        BaseMod.addCard(new OldOneTwo());
+        BaseMod.addCard(new FancyFootwork());
+        BaseMod.addCard(new AspectOfTheCrow());
+        logger.info("Spansion: Loading Red Cards.");
         BaseMod.addCard(new WrathfulStrike());
+        BaseMod.addCard(new CauterizingBlood());
         BaseMod.addCard(new VisionsOfPain());
+        logger.info("Spansion: Loading Green Cards.");
+        BaseMod.addCard(new FeintAttack());
+        BaseMod.addCard(new EvasiveManeuvers());
+        BaseMod.addCard(new OnTheFly());
     }
 
     // === Add Relics ===
