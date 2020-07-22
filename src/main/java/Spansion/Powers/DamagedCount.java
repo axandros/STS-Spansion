@@ -1,23 +1,16 @@
 package Spansion.Powers;
 
 import Spansion.Spansion;
-import Spansion.util.TextureLoader;
 import basemod.interfaces.CloneablePowerInterface;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import static Spansion.Spansion.makePowerPath;
-
-public class WrathfulStrikeCountPower extends AbstractPower implements CloneablePowerInterface {
+public class DamagedCount extends AbstractPower implements CloneablePowerInterface {
     public AbstractCreature source;
 
-    public static final String POWER_ID = Spansion.makeID(WrathfulStrikeCountPower.class.getSimpleName());
+    public static final String POWER_ID = Spansion.makeID(DamagedCount.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -29,7 +22,7 @@ public class WrathfulStrikeCountPower extends AbstractPower implements Cloneable
 
     private int damageTaken = 0;
 
-    public WrathfulStrikeCountPower(final AbstractCreature owner, final AbstractCreature source, final int amount) {
+    public DamagedCount(final AbstractCreature owner, final AbstractCreature source, final int amount) {
         name = NAME;
         ID = POWER_ID;
 
@@ -62,10 +55,10 @@ public class WrathfulStrikeCountPower extends AbstractPower implements Cloneable
 
     @Override
     public AbstractPower makeCopy() {
-        return new WrathfulStrikeCountPower(owner, source, amount);
+        return new DamagedCount(owner, source, amount);
     }
 
-    public int DamageTaken(){
+    public int TimesDamaged(){
         return damageTaken;
     }
 }

@@ -1,11 +1,10 @@
 package Spansion.Cards;
 
+import Spansion.Powers.DamagedCount;
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
-import basemod.patches.com.megacrit.cardcrawl.cards.TagBasicCards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -52,6 +51,10 @@ public class WrathfulStrike extends CustomCard{
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int damageToDeal = damage;
+        if(p.hasPower(DamagedCount.POWER_ID)) {
+            damageToDeal += ((DamagedCount) p.getPower(DamagedCount.POWER_ID)).TimesDamaged();
+        }
         AbstractDungeon.actionManager.addToBottom(
                 new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
                         AbstractGameAction.AttackEffect.BLUNT_LIGHT));

@@ -1,6 +1,7 @@
 package Spansion;
 
 import Spansion.Cards.*;
+import Spansion.Powers.DamagedCount;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
 import Spansion.util.TextureLoader;
@@ -12,10 +13,15 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -32,16 +38,16 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
-
 @SpireInitializer
 public class Spansion implements PostExhaustSubscriber,
         PostBattleSubscriber, PostDungeonInitializeSubscriber
         ,EditRelicsSubscriber, PostInitializeSubscriber, EditStringsSubscriber
-        ,EditCardsSubscriber
+        ,EditCardsSubscriber, OnPlayerDamagedSubscriber, OnStartBattleSubscriber
 
 {
     public static final Logger logger = LogManager.getLogger(Spansion.class.getName());
     private int count, totalCount;
+    private static int damageTakenThisBattle;
     private static String modID;
 
     //This is for the in-game mod settings panel.
@@ -245,8 +251,8 @@ public class Spansion implements PostExhaustSubscriber,
                 getModID() + "Resources/localization/eng/Spansion-Card-Strings.json");
 
         // PowerStrings
-        //BaseMod.loadCustomStringsFile(PowerStrings.class,
-        //        getModID() + "Resources/localization/eng/Spansion-Power-Strings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Power-Strings.json");
 
         // RelicStrings
         logger.info("Spansion Starting Relic String load.");
@@ -272,4 +278,24 @@ public class Spansion implements PostExhaustSubscriber,
         logger.info("Done editing strings");
     }
 
+    @Override
+    public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
+        damageTakenThisBattle += Math.max( 0,AbstractDungeon.player.currentBlock - damageInfo.base);
+        return i;
+    }
+
+    public static int GetCurrentDamageTaken() {
+        return damageTakenThisBattle;
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        if(AbstractDungeon.player.masterDeck.getCardNames().contains(new WrathfulStrike().ID))
+        {
+            AbstractPlayer plr = AbstractDungeon.player;
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction( plr, plr,
+                    new DamagedCount(plr, plr, 1))
+            );
+        }
+    }
 }
