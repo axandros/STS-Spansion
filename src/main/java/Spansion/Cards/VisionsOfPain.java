@@ -4,6 +4,7 @@ import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -42,8 +43,9 @@ public class VisionsOfPain extends CustomCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(
-                p, new DamageInfo(p,damage, DamageInfo.DamageType.HP_LOSS))
+        AbstractDungeon.actionManager.addToBottom(
+                //new DamageAction(p, new DamageInfo(p,damage, DamageInfo.DamageType., DamageInfo.DamageType.HP_LOSS))
+                new LoseHPAction(p, p, damage)
         );
         AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, magicNumber));
 

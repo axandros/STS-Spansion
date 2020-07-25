@@ -1,0 +1,14 @@
+[Test] Visions of Pain's damage scales with strength and weak.  It should not.
+[Reported] Cauterizing Blood Crashes game on upgrade.
+    12:35:38.655 INFO Spansion.Spansion> CauterizingBlood upgraded description.
+    12:35:38.655 INFO core.CardCrawlGame> Exception occurred in CardCrawlGame render method!
+    12:35:38.655 ERROR core.CardCrawlGame> Exception caught
+    java.lang.NullPointerException: null
+    	at com.megacrit.cardcrawl.cards.AbstractCard.initializeDescription(AbstractCard.java:483) ~[?:?]
+    	at Spansion.Cards.CauterizingBlood.upgrade(CauterizingBlood.java:67) ~[Spansion.jar:?]
+    	at com.megacrit.cardcrawl.screens.select.GridCardSelectScreen.update(GridCardSelectScreen.java:169) ~[?:?]
+    	at com.megacrit.cardcrawl.dungeons.AbstractDungeon.update(AbstractDungeon.java:2544) ~[?:?]
+    	at com.megacrit.cardcrawl.core.CardCrawlGame.update(CardCrawlGame.java:879) ~[?:?]
+    	at com.megacrit.cardcrawl.core.CardCrawlGame.render(CardCrawlGame.java:427) [?:?]
+    	at com.badlogic.gdx.backends.lwjgl.LwjglApplication.mainLoop(LwjglApplication.java:225) [?:?]
+    	at com.badlogic.gdx.backends.lwjgl.LwjglApplication$1.run(LwjglApplication.java:126) [desktop-1.0.jar:?]

@@ -31,11 +31,11 @@ public class WrathfulStrike extends CustomCard{
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = CardColor.RED;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 1;
     private static final int UPGRADE_PLUS_DMG = 2;
     private static final int INCREASE_PER_HIT = 1;
-    private static final int UPGRADE_INCREASE_PER_HIT = 2;
+    private static final int UPGRADE_INCREASE_PER_HIT = 1;
 
     public WrathfulStrike() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -54,8 +54,8 @@ public class WrathfulStrike extends CustomCard{
         int damageToDeal = damage;
         Spansion.logger.info("Using Wrathful Strike: damage to deal = " + damageToDeal);
         if(p.hasPower(DamagedCountPower.POWER_ID)) {
-            damageToDeal += ((DamagedCountPower) p.getPower(DamagedCountPower.POWER_ID)).TimesDamaged();
-            Spansion.logger.info("Damage Count Power found.  Damge to deal: " + damageToDeal);
+            damageToDeal += ( ((DamagedCountPower) p.getPower(DamagedCountPower.POWER_ID)).TimesDamaged() * magicNumber);
+            Spansion.logger.info("Damage Count Power found.  Damage to deal: " + damageToDeal);
         }
         AbstractDungeon.actionManager.addToBottom(
                 new DamageAction(m, new DamageInfo(p, damageToDeal, damageTypeForTurn),
@@ -69,6 +69,7 @@ public class WrathfulStrike extends CustomCard{
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_INCREASE_PER_HIT);
             initializeDescription();
         }
     }

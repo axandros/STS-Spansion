@@ -58,10 +58,14 @@ public class CauterizingBlood extends CustomCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
+            Spansion.logger.info(CauterizingBlood.class.getSimpleName() + " upgraded name.");
             upgradeBaseCost(UPGRADED_COST);
+            Spansion.logger.info(CauterizingBlood.class.getSimpleName() + " upgraded cost.");
             //upgradeMagicNumber(UPGRADE_MINUS_COST);
             rawDescription = UPGRADE_DESCRIPTION;
+            Spansion.logger.info(CauterizingBlood.class.getSimpleName() + " upgraded description.");
             initializeDescription();
+            Spansion.logger.info(CauterizingBlood.class.getSimpleName() + " initialized? description.");
         }
     }
 }

@@ -51,6 +51,7 @@ public class DamagedCountPower extends AbstractPower implements CloneablePowerIn
         if(PlayerTurn) {
             damageTaken++;
             Spansion.logger.info("Damage taken on player's turn: " + damageTaken);
+            updateDescription();
         }
         return super.onLoseHp(damageAmount);
     }
