@@ -1,7 +1,7 @@
 package Spansion;
 
 import Spansion.Cards.*;
-import Spansion.Powers.DamagedCount;
+import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
 import Spansion.util.TextureLoader;
@@ -292,12 +292,15 @@ public class Spansion implements PostExhaustSubscriber,
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        logger.info("Checking for Wrathful strike in the deck.");
         if(AbstractDungeon.player.masterDeck.getCardNames().contains(new WrathfulStrike().ID))
         {
+            logger.info("Wrathful strike found.");
             AbstractPlayer plr = AbstractDungeon.player;
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction( plr, plr,
-                    new DamagedCount(plr, plr, 1))
+                    new DamagedCountPower(plr, plr, 1))
             );
+            logger.info("Damge count Power Applied.");
         }
     }
 }
