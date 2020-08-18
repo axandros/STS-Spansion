@@ -4,10 +4,12 @@ import Spansion.Spansion;
 import Spansion.util.TextureLoader;
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -17,6 +19,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+
+import java.util.logging.Logger;
 
 import static Spansion.Spansion.makePowerPath;
 
@@ -52,28 +58,14 @@ public class OnTheFlyPower extends AbstractPower implements CloneablePowerInterf
 
     @Override
     public void onDrawOrDiscard() {
-        // This triggers on Card Play for some reason.  Also for Draw and Discard.
-        // TODO: Move code to correct function ( on Discard )
-        AbstractDungeon.actionManager.addToBottom(
-                (
-                new DamageRandomEnemyAction( new DamageInfo(source, amount),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
-                )
-        );
-    }
-
-
-
-
-    @Override
-    public void atEndOfTurn(final boolean isPlayer) {
-
+        super.onDrawOrDiscard();
+        Spansion.logger.info("Called OnDrawOrDiscard" );
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0];
 
     }
 

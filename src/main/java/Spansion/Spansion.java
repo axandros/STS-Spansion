@@ -290,17 +290,14 @@ public class Spansion implements PostExhaustSubscriber,
         return damageTakenThisBattle;
     }
 
+
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        logger.info("Checking for Wrathful strike in the deck.");
-        if(AbstractDungeon.player.masterDeck.getCardNames().contains(new WrathfulStrike().ID))
-        {
-            logger.info("Wrathful strike found.");
+        if(AbstractDungeon.player.masterDeck.getCardNames().contains(WrathfulStrike.ID)){
             AbstractPlayer plr = AbstractDungeon.player;
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction( plr, plr,
-                    new DamagedCountPower(plr, plr, 1))
-            );
-            logger.info("Damge count Power Applied.");
+                    new DamagedCountPower(plr, plr, 1)
+                    ));
         }
     }
 }

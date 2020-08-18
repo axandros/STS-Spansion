@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static Spansion.Spansion.makeCardPath;
 
 public class OldOneTwo extends CustomCard {
-//"The Old One-Two" - Attack - 1 - Deal 5 damage twice, applying 1 vulnerable each time.
+    //"The Old One-Two" - Attack - 1 - Deal 5 damage twice, applying 1 vulnerable each time.
     public static final String ID = Spansion.makeID(OldOneTwo.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 

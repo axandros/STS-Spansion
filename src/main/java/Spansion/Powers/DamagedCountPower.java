@@ -5,18 +5,24 @@ import Spansion.util.TextureLoader;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import static Spansion.Spansion.makePowerPath;
 
 public class DamagedCountPower extends AbstractPower implements CloneablePowerInterface {
     public AbstractCreature source;
 
-    public static final String POWER_ID = Spansion.makeID(DamagedCountPower.class.getSimpleName());
+    public static final String POWER_ID = Spansion.makeID("DamagedCountPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -26,8 +32,9 @@ public class DamagedCountPower extends AbstractPower implements CloneablePowerIn
     private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
-    private int damageTaken = 0;
-    public  boolean PlayerTurn = true;
+    boolean playerTurn = false;
+    int damageTaken = 0;
+    public int DamageTakenOnTurn(){return damageTaken;}
 
     public DamagedCountPower(final AbstractCreature owner, final AbstractCreature source, final int amount) {
         name = NAME;
@@ -48,41 +55,33 @@ public class DamagedCountPower extends AbstractPower implements CloneablePowerIn
 
     @Override
     public int onLoseHp(int damageAmount) {
-        if(PlayerTurn) {
-            damageTaken++;
-            Spansion.logger.info("Damage taken on player's turn: " + damageTaken);
-            updateDescription();
+        if(playerTurn) {
+            damageTaken += damageAmount;
         }
         return super.onLoseHp(damageAmount);
     }
 
     @Override
     public void atStartOfTurn() {
-        PlayerTurn = true;
-        Spansion.logger.info("Start of Turn.  Players: " + PlayerTurn);
+        playerTurn = true;
         super.atStartOfTurn();
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        PlayerTurn = false;
-        Spansion.logger.info("End of Turn.  Players: " + PlayerTurn);
+    public void atEndOfTurn(final boolean isPlayer) {
+       playerTurn = false;
         super.atEndOfTurn(isPlayer);
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + damageTaken + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
 
     }
 
     @Override
     public AbstractPower makeCopy() {
         return new DamagedCountPower(owner, source, amount);
-    }
-
-    public int TimesDamaged(){
-        return damageTaken;
     }
 }

@@ -7,21 +7,27 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import static Spansion.Spansion.makePowerPath;
 
 public class CauterizingBloodPower  extends AbstractPower implements CloneablePowerInterface {
     public AbstractCreature source;
 
-    public static final String POWER_ID = Spansion.makeID(CauterizingBloodPower.class.getSimpleName());
+    public static final String POWER_ID = Spansion.makeID("CauterizingBloodPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -42,7 +48,7 @@ public class CauterizingBloodPower  extends AbstractPower implements CloneablePo
         this.source = source;
 
         type = PowerType.BUFF;
-        isTurnBased = false;
+        isTurnBased = true;
 
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
@@ -53,20 +59,22 @@ public class CauterizingBloodPower  extends AbstractPower implements CloneablePo
     @Override
     public void atStartOfTurn() {
         damageTaken = 0;
+        super.atStartOfTurn();
     }
 
     @Override
     public int onLoseHp(int damageAmount) {
-
-        damageTaken+= damageAmount;
+        damageTaken += damageAmount;
         return super.onLoseHp(damageAmount);
     }
 
     @Override
     public void atEndOfTurn(final boolean isPlayer) {
-        int heal = (damageTaken + 1)/2;
-        if(heal > 0){
-            AbstractDungeon.actionManager.addToBottom(new HealAction(source, source, heal));
+        int heal = (damageTaken +1)/2;
+        if( heal>0 ){
+            AbstractDungeon.actionManager.addToBottom(
+                    new HealAction(source, source, heal)
+            );
         }
     }
 

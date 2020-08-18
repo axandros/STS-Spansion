@@ -18,7 +18,8 @@
   },
   "Spansion:VisionsOfPain": {
     "NAME": "Visions Of Pain",
-    "DESCRIPTION": "Take !D! Damage.  Draw !M! Cards"
+    "DESCRIPTION": "Take 3 Damage. NL  Draw !M! Cards",
+    "UPGRADE_DESCRIPTION": "Take 2 Damage. NL Draw !M! Cards"
   },
   "Spansion:WrathfulStrike": {
     "NAME": "Wrathful Strike",
@@ -26,7 +27,8 @@
   },
   "Spansion:EvasiveManeuvers": {
     "NAME": "Evasive Maneuvers",
-    "DESCRIPTION": "Gain !B! Block.  If this card is discarded, gain !M! Dexterity."
+    "DESCRIPTION": "Gain !B! Block.  If this card is discarded, gain !M! Dexterity.",
+    "EXTENDED_DESCRIPTION": [ "I can't play this."]
   },
   "Spansion:OnTheFly": {
     "NAME": "On The Fly",

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 
 import static Spansion.Spansion.makeCardPath;
@@ -33,18 +34,17 @@ public class FeintAttack extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = CardColor.GREEN;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 10;
-    private static final int UPGRADE_PLUS_DMG = 4;
-    private static final int BLOCK = 4;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int BLOCK_NEXT_TURN = 2;
+    private static final int UPGRADE_PLUS_BLOCK_NEXT_TURN = 2;
 
     public FeintAttack() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         damage = baseDamage = DAMAGE;
-        block = baseBlock = BLOCK;
-
+        block = baseBlock = BLOCK_NEXT_TURN;
     }
 
     // Actions the card should do.
@@ -54,15 +54,10 @@ public class FeintAttack extends CustomCard {
                 new DiscardAction(p, p, 1, false)
         );
         AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
-                            AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                new DamageAction(m, new DamageInfo(p, damage), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
+        );
         AbstractDungeon.actionManager.addToBottom(
-                new GainBlockAction(p, p, block)
-            );
-        AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(p, p,
-                        new NextTurnBlockPower(p, block)
-                )
+                new ApplyPowerAction(p, p, new NextTurnBlockPower(p, block))
         );
     }
 
@@ -72,7 +67,7 @@ public class FeintAttack extends CustomCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeBlock(UPGRADE_PLUS_BLOCK);
+            upgradeBlock(UPGRADE_PLUS_BLOCK_NEXT_TURN);
             initializeDescription();
         }
     }
