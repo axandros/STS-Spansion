@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MTS" />
         <module name="Spansion" />
+        <module name="spansion" />
+        <module name="MTS" />
         <module name="STS-Spansion" />
       </profile>
     </annotationProcessing>

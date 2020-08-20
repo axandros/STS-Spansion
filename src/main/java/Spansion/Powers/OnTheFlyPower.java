@@ -50,6 +50,8 @@ public class OnTheFlyPower extends AbstractPower implements CloneablePowerInterf
         updateDescription();
     }
 
+    
+
     @Override
     public void onDrawOrDiscard() {
         // This triggers on Card Play for some reason.  Also for Draw and Discard.

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -38,6 +39,8 @@ public class LethalInjection extends CustomCard {
     private static final int POISON_APPLIED = 2;
     private static final int UPGRADE_POISON_APPLIED = 1;
 
+    private static int _zeroCostPlayed = 0;
+
     public LethalInjection() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
@@ -54,6 +57,15 @@ public class LethalInjection extends CustomCard {
         AbstractDungeon.actionManager.addToBottom(
                 new ChannelAction(new ToxicOrb())
         );
+    }
+
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) {
+        super.onPlayCard(c, m);
+        if(c.cost == 0){
+            _zeroCostPlayed++;
+            damage++;
+        }
     }
 
     // Upgraded stats.

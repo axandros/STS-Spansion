@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,12 +20,17 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
+import sun.java2d.Spans;
 
+import java.util.ArrayList;
+
+import static Spansion.Spansion.logger;
 import static Spansion.Spansion.makeOrbPath;
 
 public class ToxicOrb extends AbstractOrb {
@@ -77,6 +84,16 @@ public class ToxicOrb extends AbstractOrb {
                 new ApplyPowerAction( mon, player, new PoisonPower(mon, player, evokeAmount))
         );
         // TODO: Is there a way to trigger all poison now?
+        ArrayList<AbstractMonster> monGroup = AbstractDungeon.getMonsters().monsters;
+        for(int i = 0; i < monGroup.size(); i++){
+            AbstractMonster tar = monGroup.get(i);
+            PoisonPower poison = (PoisonPower)monGroup.get(i).getPower(PoisonPower.POWER_ID);
+            if(poison != null){
+                logger.info(">> Hitting " + tar.name + " with " + poison.amount + " poison.");
+                AbstractDungeon.actionManager.addToBottom(
+                        new PoisonLoseHpAction(tar, tar, poison.amount, AbstractGameAction.AttackEffect.POISON));
+            }
+        }
 
         AbstractDungeon.actionManager.addToBottom(
                 new SFXAction("STS_SFX_PoisonApply_v1.ogg")
