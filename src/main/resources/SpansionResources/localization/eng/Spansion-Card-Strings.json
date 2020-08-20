@@ -38,11 +38,11 @@
   },
   "Spansion:LethalInjection": {
     "NAME": "Lethal Injection",
-    "DESCRIPTION": "Deal !D! Damage.  Channel a Toxic Orb."
+    "DESCRIPTION": "Deal !D! Damage. Increase this by !M! each time you play a 0 cost card. NL Channel a Toxic Orb."
   },
   "Spansion:ToxicEmissions": {
     "NAME": "Toxic Emissions",
-    "DESCRIPTION": "Inflict !M! weak on all enemies.  Channel 1 Toxic Orb."
+    "DESCRIPTION": "Inflict !M! weak on all enemies. Channel 1 Toxic Orb."
   },
   "Spansion:ArchaicFuel": {
     "NAME": "Archaic Fuel",

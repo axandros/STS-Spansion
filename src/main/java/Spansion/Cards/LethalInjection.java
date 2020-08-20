@@ -36,7 +36,7 @@ public class LethalInjection extends CustomCard {
     private static final int COST = 1;
     private static final int DAMAGE = 3;
     private static final int UPGRADE_PLUS_DMG = 1;
-    private static final int POISON_APPLIED = 2;
+    private static final int POISON_APPLIED = 1;
     private static final int UPGRADE_POISON_APPLIED = 1;
 
     private static int _zeroCostPlayed = 0;
@@ -51,8 +51,9 @@ public class LethalInjection extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int dmg = damage ;//+ _zeroCostPlayed*magicNumber;
         AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
+                new DamageAction(m, new DamageInfo(p, dmg, damageTypeForTurn),
                         AbstractGameAction.AttackEffect.POISON));
         AbstractDungeon.actionManager.addToBottom(
                 new ChannelAction(new ToxicOrb())
@@ -62,9 +63,11 @@ public class LethalInjection extends CustomCard {
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
         super.onPlayCard(c, m);
+        Spansion.logger.info("Played card: " + c.name);
         if(c.cost == 0){
             _zeroCostPlayed++;
-            damage++;
+            Spansion.logger.info("Card is 0 cost.");
+            damage += magicNumber;
         }
     }
 
