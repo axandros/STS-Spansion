@@ -26,7 +26,7 @@ import static Spansion.Spansion.makeCardPath;
 
 public class ToxicEmissions extends CustomCard {
     // Toxic Emissions - Skill - 0 - Apply 1 weak and vulnerable to an enemy for each different type of orb.
-    public static final String ID = Spansion.makeID(OldOneTwo.class.getSimpleName());
+    public static final String ID = Spansion.makeID(ToxicEmissions.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("Skill.png");
