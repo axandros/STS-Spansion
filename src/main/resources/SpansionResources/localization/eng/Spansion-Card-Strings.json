@@ -42,7 +42,7 @@
   },
   "Spansion:ToxicEmissions": {
     "NAME": "Toxic Emissions",
-    "DESCRIPTION": "Inflict !M! weak on all enemies. Channel 1 Toxic Orb."
+    "DESCRIPTION": "Inflict !M! weak and vulnerable on all enemies for each different type of orb you have."
   },
   "Spansion:ArchaicFuel": {
     "NAME": "Archaic Fuel",

@@ -3,8 +3,8 @@
     "NAME": "Toxic Orb",
     "DESCRIPTION": [
       "#yPassive: At the start of your turn, inflict a random enemy with #b",
-      "poison.",
-      "/NL #yEvoke: Inflict a random enemy with #b"
+      "poison. NL",
+      "#yEvoke: Inflict a random enemy with #b"
     ]
   }
 }

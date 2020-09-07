@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 import java.util.ArrayList;
@@ -34,9 +36,7 @@ public class ToxicEmissions extends CustomCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = CardColor.BLUE;
 
-    private static final int COST = 1;
-    private static final int POISON = 1;
-    private static final int UPGRADE_POISON = 1;
+    private static final int COST = 0;
     private static final int WEAK = 1;
     private static final int UPGRADE_WEAK = 1;
 
@@ -49,14 +49,24 @@ public class ToxicEmissions extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+
+        ArrayList<String> orbList = new ArrayList<>();
+        for (AbstractOrb o : AbstractDungeon.player.orbs) {
+            if (o.ID != null && !o.ID.equals("Empty") && !orbList.contains(o.ID))
+            { orbList.add(o.ID);
+            }
+        }
+        int x = orbList.size() * magicNumber;
+
         ArrayList<AbstractMonster> mons = AbstractDungeon.getCurrRoom().monsters.monsters;
         for(int i = 0; i < mons.size(); i++) {
             m = mons.get(i);
             if(m.currentHealth > 0 && !(m.isPlayer)) {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new WeakPower(m, x, false), magicNumber));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, x, false), magicNumber));
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new ChannelAction(new ToxicOrb()));
+
     }
 
     // Upgraded stats.

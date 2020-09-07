@@ -67,7 +67,7 @@ public class LethalInjection extends CustomCard {
         if(c.cost == 0){
             _zeroCostPlayed++;
             Spansion.logger.info("Card is 0 cost.");
-            damage += magicNumber;
+            baseDamage += magicNumber;
         }
     }
 

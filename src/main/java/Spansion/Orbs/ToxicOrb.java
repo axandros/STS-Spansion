@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
@@ -68,12 +69,6 @@ public class ToxicOrb extends AbstractOrb {
     public void updateDescription() {
         applyFocus();
         description = DESC[0] + passiveAmount + DESC[1] + DESC[2] + evokeAmount;
-    }
-
-    @Override
-    public void applyFocus() {
-        passiveAmount = basePassiveAmount;
-        evokeAmount = baseEvokeAmount;
     }
 
     @Override
