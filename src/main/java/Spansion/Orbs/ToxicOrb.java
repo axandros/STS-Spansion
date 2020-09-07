@@ -20,14 +20,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
-import sun.java2d.Spans;
 
 import java.util.ArrayList;
 
@@ -78,11 +75,10 @@ public class ToxicOrb extends AbstractOrb {
         AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction( mon, player, new PoisonPower(mon, player, evokeAmount))
         );
-        // TODO: Is there a way to trigger all poison now?
+
         ArrayList<AbstractMonster> monGroup = AbstractDungeon.getMonsters().monsters;
-        for(int i = 0; i < monGroup.size(); i++){
-            AbstractMonster tar = monGroup.get(i);
-            PoisonPower poison = (PoisonPower)monGroup.get(i).getPower(PoisonPower.POWER_ID);
+        for(AbstractMonster tar: monGroup){
+            PoisonPower poison = (PoisonPower)tar.getPower(PoisonPower.POWER_ID);
             if(poison != null){
                 logger.info(">> Hitting " + tar.name + " with " + poison.amount + " poison.");
                 AbstractDungeon.actionManager.addToBottom(
@@ -96,8 +92,12 @@ public class ToxicOrb extends AbstractOrb {
     }
 
     @Override
-    public void onEndOfTurn() {
+    public void onStartOfTurn() {
         // Passive
+        triggerPassive();
+    }
+
+    private void triggerPassive(){
         AbstractMonster mon = AbstractDungeon.getRandomMonster();
         AbstractDungeon.actionManager.addToBottom(
                 new VFXAction( new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA),0.1f)
