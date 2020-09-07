@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import static Spansion.Spansion.makeCardPath;
 
 public class LethalInjection extends CustomCard {
-//"Lethal Injection" - Attack - 1 - Deal 3 damage.  Gain a Toxic Orb.  Increase this damage by 2 for every 0 cost card played this turn.
+    //"Lethal Injection" - Attack - 1 - Deal 3 damage.  Gain a Toxic Orb.  Increase this damage by 2 for every 0 cost card played this turn.
     public static final String ID = Spansion.makeID(LethalInjection.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
@@ -36,8 +36,7 @@ public class LethalInjection extends CustomCard {
     private static final int COST = 1;
     private static final int DAMAGE = 3;
     private static final int UPGRADE_PLUS_DMG = 1;
-    private static final int POISON_APPLIED = 1;
-    private static final int UPGRADE_POISON_APPLIED = 1;
+    private static final int BONUS_PER_O_PLAYED = 1;
 
     private static int _zeroCostPlayed = 0;
 
@@ -45,15 +44,14 @@ public class LethalInjection extends CustomCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = POISON_APPLIED;
+        magicNumber = baseMagicNumber = BONUS_PER_O_PLAYED;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int dmg = damage ;//+ _zeroCostPlayed*magicNumber;
         AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(m, new DamageInfo(p, dmg, damageTypeForTurn),
+                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
                         AbstractGameAction.AttackEffect.POISON));
         AbstractDungeon.actionManager.addToBottom(
                 new ChannelAction(new ToxicOrb())
@@ -77,7 +75,6 @@ public class LethalInjection extends CustomCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_POISON_APPLIED);
             initializeDescription();
         }
     }
