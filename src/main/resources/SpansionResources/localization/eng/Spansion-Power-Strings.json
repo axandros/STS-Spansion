@@ -17,6 +17,19 @@
     "DESCRIPTIONS": [
       "When you exhaust a card, channel ",
       " Toxic Orbs."
+  },
+  "Spansion:CauterizingBloodPower": {
+    "NAME": "CauterizingBloodPower",
+    "DESCRIPTIONS": [
+      "At the end of your turn, restore "
+      ," health (half of damage taken this turn.)"
+    ]
+  },
+  "Spansion:DamagedCountPower": {
+    "NAME": "Damaged Count",
+    "DESCRIPTIONS": [
+      "You have taken damage ",
+      " time(s) on your turn."
     ]
   }
 }
