@@ -1,0 +1,10 @@
+{
+  "Spansion:ToxicOrb": {
+    "NAME": "Toxic Orb",
+    "DESCRIPTION": [
+      "#yPassive: #y At the start of your turn, inflict a random enemy with #b",
+      " poison. NL ",
+      "#yEvoke: #y Inflict a random enemy with #b"
+    ]
+  }
+}

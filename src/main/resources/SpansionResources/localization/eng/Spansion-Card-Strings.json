@@ -35,5 +35,17 @@
   "Spansion:FeintAttack": {
     "NAME": "Feint Attack",
     "DESCRIPTION": "Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn."
+  },
+  "Spansion:LethalInjection": {
+    "NAME": "Lethal Injection",
+    "DESCRIPTION": "Deal !D! Damage. Increase this by !M! each time you play a 0 cost card. NL Channel a Toxic Orb."
+  },
+  "Spansion:ToxicEmissions": {
+    "NAME": "Toxic Emissions",
+    "DESCRIPTION": "Inflict !M! weak and vulnerable on all enemies for each different type of orb you have."
+  },
+  "Spansion:ArchaicFuel": {
+    "NAME": "Archaic Fuel",
+    "DESCRIPTION": "When you exhaust a card, channel 1 Toxic Orb."
   }
 }

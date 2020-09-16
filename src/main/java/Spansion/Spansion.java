@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -83,6 +84,10 @@ public class Spansion implements PostExhaustSubscriber,
 
     public static String makePowerPath(String resourcePath) {
         return getModID() + "Resources/images/powers/" + resourcePath;
+    }
+
+    public static String makeOrbPath(String resourcePath) {
+        return getModID() + "Resources/images/orbs/" + resourcePath;
     }
 
     // === Subscribe and Initialize ===
@@ -167,6 +172,10 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new FeintAttack());
         BaseMod.addCard(new EvasiveManeuvers());
         BaseMod.addCard(new OnTheFly());
+        logger.info("Spansion: Loading Blue Cards.");
+        BaseMod.addCard(new LethalInjection());
+        BaseMod.addCard(new ToxicEmissions());
+        BaseMod.addCard(new ArchaicFuel());
     }
 
     // === Add Relics ===
@@ -274,8 +283,8 @@ public class Spansion implements PostExhaustSubscriber,
         //       getModID() + "Resources/localization/eng/Spansion-Character-Strings.json");
 
         // OrbStrings
-        //BaseMod.loadCustomStringsFile(OrbStrings.class,
-        //   getModID() + "Resources/localization/eng/Spansion-Orb-Strings.json");
+        BaseMod.loadCustomStringsFile(OrbStrings.class,
+           getModID() + "Resources/localization/eng/Spansion-Orb-Strings.json");
 
         logger.info("Done editing strings");
     }
