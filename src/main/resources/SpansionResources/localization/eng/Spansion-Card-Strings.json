@@ -47,5 +47,9 @@
   "Spansion:ArchaicFuel": {
     "NAME": "Archaic Fuel",
     "DESCRIPTION": "When you exhaust a card, channel 1 Toxic Orb."
+  },
+  "Spansion:DrunkenSkill": {
+    "NAME": "Drunken Skill",
+    "DESCRIPTION": "Enter Drunken Stance."
   }
 }

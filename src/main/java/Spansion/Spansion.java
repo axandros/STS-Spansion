@@ -20,10 +20,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.BaseMod;
@@ -52,7 +49,7 @@ public class Spansion implements PostExhaustSubscriber,
     private static String modID;
 
     //This is for the in-game mod settings panel.
-    private static final String MODNAME = "Test Mod";
+    private static final String MODNAME = "Spansion";
     private static final String AUTHOR = "Axandros";
     private static final String DESCRIPTION = "A base for Slay the Spire to start your own mod from.";
 
@@ -88,6 +85,10 @@ public class Spansion implements PostExhaustSubscriber,
 
     public static String makeOrbPath(String resourcePath) {
         return getModID() + "Resources/images/orbs/" + resourcePath;
+    }
+
+    public static String makeStancePath(String resourcePath) {
+        return getModID() + "Resources/images/stance/" + resourcePath;
     }
 
     // === Subscribe and Initialize ===
@@ -176,6 +177,9 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new LethalInjection());
         BaseMod.addCard(new ToxicEmissions());
         BaseMod.addCard(new ArchaicFuel());
+        logger.info("Spansion: Loading Purple Cards.");
+        BaseMod.addCard(new DrunkenSkill());
+
     }
 
     // === Add Relics ===
@@ -285,6 +289,10 @@ public class Spansion implements PostExhaustSubscriber,
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
            getModID() + "Resources/localization/eng/Spansion-Orb-Strings.json");
+
+        // Stance Strings
+        BaseMod.loadCustomStringsFile(StanceStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Stance-Strings.json");
 
         logger.info("Done editing strings");
     }
