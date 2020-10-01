@@ -2,6 +2,7 @@ package Spansion.Cards;
 
 import Spansion.Spansion;
 import Spansion.Stances.DrunkenStance;
+import Spansion.Stances.MinimalStance;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -43,7 +44,7 @@ public class DrunkenSkill extends CustomCard {
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-        AbstractDungeon.actionManager.addToBottom( new ChangeStanceAction(new DrunkenStance()));
+        AbstractDungeon.actionManager.addToBottom( new ChangeStanceAction(new MinimalStance()));
         //AbstractDungeon.actionManager.addToBottom( new GainBlockAction(abstractPlayer,2));
     }
 }
