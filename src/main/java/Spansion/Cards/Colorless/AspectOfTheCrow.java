@@ -1,6 +1,5 @@
-package Spansion.Cards;
+package Spansion.Cards.Colorless;
 
-import Spansion.Powers.CauterizingBloodPower;
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -10,17 +9,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.MagicFlower;
 
 import static Spansion.Spansion.makeCardPath;
+import Spansion.Powers.AspectOfTheCrowPower;
 
-public class CauterizingBlood extends CustomCard {
-    // "Cauterizing Blood" - Power - 3 - At the end of your turn, heal for half of the damage you've taken this turn, rounded down.
-
-    public static final String ID = Spansion.makeID(CauterizingBlood.class.getSimpleName());
+public class AspectOfTheCrow extends CustomCard {
+    // "Aspect of the Crow" - Power - Every time you play a card, gain 1 temporary strength and 1 temporary dexterity.
+    public static final String ID = Spansion.makeID(AspectOfTheCrow.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = makeCardPath("CauterizingBlood.png");
+    public static final String IMG = makeCardPath("Power.png");
 
 
     public static final String NAME = cardStrings.NAME;
@@ -32,24 +30,26 @@ public class CauterizingBlood extends CustomCard {
 
     // STAT DECLARATION
 
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     private static final AbstractCard.CardTarget TARGET = CardTarget.SELF;
     private static final AbstractCard.CardType TYPE = AbstractCard.CardType.POWER;
-    public static final AbstractCard.CardColor COLOR = AbstractCard.CardColor.RED;
+    public static final AbstractCard.CardColor COLOR = AbstractCard.CardColor.COLORLESS;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
+
+    private static final int UPGRADE_PLUS_STACK = 1;
     private static final int UPGRADED_COST = 1;
 
-    public CauterizingBlood() {
+    public AspectOfTheCrow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        baseMagicNumber = magicNumber = 2;
+        magicNumber = baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(p, p, new CauterizingBloodPower(p, p, baseMagicNumber), baseMagicNumber)
+                new ApplyPowerAction(p, p, new AspectOfTheCrowPower(p,p, baseMagicNumber), baseMagicNumber)
         );
     }
 
@@ -59,7 +59,7 @@ public class CauterizingBlood extends CustomCard {
         if (!upgraded) {
             upgradeName();
             upgradeBaseCost(UPGRADED_COST);
-            //upgradeMagicNumber(UPGRADE_MINUS_COST);
+            //upgradeMagicNumber(UPGRADE_PLUS_STACK);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }

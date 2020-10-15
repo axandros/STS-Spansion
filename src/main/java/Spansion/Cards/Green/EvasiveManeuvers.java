@@ -1,7 +1,6 @@
-package Spansion.Cards;
+package Spansion.Cards.Green;
 
 import Spansion.Spansion;
-import Spansion.util.Shortcuts;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;

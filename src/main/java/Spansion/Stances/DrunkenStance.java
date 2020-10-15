@@ -1,11 +1,12 @@
 package Spansion.Stances;
 
-import Spansion.Cards.ToxicEmissions;
+import Spansion.Powers.StaggerPower;
 import Spansion.Spansion;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -32,49 +33,36 @@ public class DrunkenStance extends AbstractStance {
         Spansion.logger.info("Drunken ID: " + STANCE_ID);
     }
 
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL) {
+            return damage * 0.66F;
+            }
+        return damage;
+    }
 
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+        Spansion.logger.info("Damage Receive: " + damage);
+        Spansion.ActionManagerDebug();
+        float dmg = damage;
+        if (damageType == DamageInfo.DamageType.NORMAL) {
+            dmg = damage * 0.66F;
+            int stagg = (int)Math.ceil(damage - dmg);
+            AbstractPlayer plr = AbstractDungeon.player;
+            //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(plr, plr,new StaggerPower(plr, plr, stagg)));
+            Spansion.logger.info("Damage reduced to " + dmg);
+        }
+        return dmg;
+    }
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];
-    }
-
-    public void updateAnimation() {
-
-        if (!Settings.DISABLE_EFFECTS) {
-
-            this.particleTimer -= Gdx.graphics.getDeltaTime();
-            if (this.particleTimer < 0.0F) {
-                this.particleTimer = 0.04F;
-                AbstractDungeon.effectsQueue.add(new CalmParticleEffect());
-            }
-        }
-
-
-        this.particleTimer2 -= Gdx.graphics.getDeltaTime();
-        if (this.particleTimer2 < 0.0F) {
-            this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-            AbstractDungeon.effectsQueue.add(new StanceAuraEffect("Calm"));
-        }
-
-    }
-
-
-    public void onEnterStance() {
-
-        if (sfxId != -1L) {
-            stopIdleSfx();
-        }
-
-        //CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-        //sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
-        AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.SKY, true));
-
-
     }
 
 
     public void onExitStance() {
         AbstractPlayer player = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player,player, new AngryPower(player, 2)));
+        //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(player,player, new AngryPower(player, 2)));
         stopIdleSfx();
     }
 

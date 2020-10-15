@@ -1,6 +1,20 @@
 package Spansion;
 
-import Spansion.Cards.*;
+import Spansion.Cards.Blue.ArchaicFuel;
+import Spansion.Cards.Blue.LethalInjection;
+import Spansion.Cards.Blue.ToxicEmissions;
+import Spansion.Cards.Colorless.AspectOfTheCrow;
+import Spansion.Cards.Colorless.FancyFootwork;
+import Spansion.Cards.Colorless.OldOneTwo;
+import Spansion.Cards.Green.EvasiveManeuvers;
+import Spansion.Cards.Green.FeintAttack;
+import Spansion.Cards.Green.OnTheFly;
+import Spansion.Cards.Purple.AFortifyingDrink;
+import Spansion.Cards.Purple.BalanceInAll;
+import Spansion.Cards.Purple.CalculatedStrike;
+import Spansion.Cards.Red.CauterizingBlood;
+import Spansion.Cards.Red.VisionsOfPain;
+import Spansion.Cards.Red.WrathfulStrike;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
@@ -13,6 +27,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -30,11 +45,14 @@ import basemod.interfaces.*;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sun.security.jca.GetInstance;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Random;
 
 @SpireInitializer
 public class Spansion implements PostExhaustSubscriber,
@@ -178,8 +196,9 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new ToxicEmissions());
         BaseMod.addCard(new ArchaicFuel());
         logger.info("Spansion: Loading Purple Cards.");
-        BaseMod.addCard(new DrunkenSkill());
-
+        BaseMod.addCard(new AFortifyingDrink());
+        BaseMod.addCard(new BalanceInAll());
+        BaseMod.addCard(new CalculatedStrike());
     }
 
     // === Add Relics ===
@@ -318,6 +337,14 @@ public class Spansion implements PostExhaustSubscriber,
                     new DamagedCountPower(plr, plr, 1))
             );
             logger.info("Damge count Power Applied.");
+        }
+    }
+
+    public static void ActionManagerDebug(){
+        ArrayList<AbstractGameAction> actions = AbstractDungeon.actionManager.actions;
+        for (int i = 0; i < actions.size(); i++) {
+            Spansion.logger.info(actions.get(i).toString());
+
         }
     }
 }
