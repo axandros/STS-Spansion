@@ -39,6 +39,8 @@ public class AFortifyingDrink extends CustomCard {
     public AFortifyingDrink() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         block = baseBlock = BLOCK;
+        //this.exhaust = true;
+        //this.retain = true;
     }
 
     @Override

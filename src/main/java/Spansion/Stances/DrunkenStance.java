@@ -33,13 +33,7 @@ public class DrunkenStance extends AbstractStance {
         Spansion.logger.info("Drunken ID: " + STANCE_ID);
     }
 
-    @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        if (type == DamageInfo.DamageType.NORMAL) {
-            return damage * 0.66F;
-            }
-        return damage;
-    }
+
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
