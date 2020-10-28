@@ -17,6 +17,7 @@
     "DESCRIPTIONS": [
       "When you exhaust a card, channel ",
       " Toxic Orbs."
+      ]
   },
   "Spansion:CauterizingBloodPower": {
     "NAME": "CauterizingBloodPower",
@@ -30,6 +31,20 @@
     "DESCRIPTIONS": [
       "You have taken damage ",
       " time(s) on your turn."
+    ]
+  },
+  "Spansion:StaggerPower": {
+  "NAME": "Stagger",
+  "DESCRIPTIONS": [
+    "Take ",
+    " damage at the end of your turn and reduce this by ",
+    "."
+  ]
+},
+  "Spansion:BalanceInAllPower": {
+    "NAME": "Balance in all Things",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain block if in Drunken Stance, Draw next turn if Calm, and Exit Wrath if in Wrath.  Exiting Wrath Depletes this power."
     ]
   }
 }

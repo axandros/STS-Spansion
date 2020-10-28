@@ -1,0 +1,14 @@
+{
+  "Spansion:DrunkenStance": {
+    "NAME": "Drunken",
+    "DESCRIPTION": [
+    "When leaving this #yStance, become #yAngry."
+    ]
+  },
+  "Spansion:MinimalStance": {
+    "NAME": "Minimal",
+    "DESCRIPTION": [
+      "This stance does nothing."
+    ]
+  }
+}

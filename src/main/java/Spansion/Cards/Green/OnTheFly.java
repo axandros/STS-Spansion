@@ -1,7 +1,6 @@
-package Spansion.Cards;
+package Spansion.Cards.Green;
 
-import Spansion.Powers.ArchaicFuelPower;
-import Spansion.Powers.AspectOfTheCrowPower;
+import Spansion.Powers.OnTheFlyPower;
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -13,12 +12,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Spansion.Spansion.makeCardPath;
 
-public class ArchaicFuel extends CustomCard {
-    // "Aspect of the Crow" - Power - Every time you play a card, gain 1 temporary strength and 1 temporary dexterity.
-    public static final String ID = Spansion.makeID(ArchaicFuel.class.getSimpleName());
+public class OnTheFly extends CustomCard {
+
+    public static final String ID = Spansion.makeID(OnTheFly.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    public static final String IMG = makeCardPath("ArchaicFuel.png");
+    public static final String IMG = makeCardPath("OnTheFly.png");
 
 
     public static final String NAME = cardStrings.NAME;
@@ -35,12 +34,11 @@ public class ArchaicFuel extends CustomCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = CardColor.COLORLESS;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int UPGRADE_PLUS_STACK = 1;
-    private static final int UPGRADED_COST = 1;
+    private static final int UPGRADE_MINUS_COST = 1;
 
-    public ArchaicFuel() {
+    public OnTheFly() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = 1;
     }
@@ -49,7 +47,7 @@ public class ArchaicFuel extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(p, p, new ArchaicFuelPower(p,p, baseMagicNumber), baseMagicNumber)
+                new ApplyPowerAction(p, p, new OnTheFlyPower(p, p, baseMagicNumber), baseMagicNumber)
         );
     }
 
@@ -58,8 +56,8 @@ public class ArchaicFuel extends CustomCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
-            //upgradeMagicNumber(UPGRADE_PLUS_STACK);
+            upgradeBaseCost(0);
+            upgradeMagicNumber(UPGRADE_MINUS_COST);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }

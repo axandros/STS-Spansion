@@ -1,9 +1,7 @@
-package Spansion.Cards;
+package Spansion.Cards.Colorless;
 
 import Spansion.Spansion;
-import Spansion.util.Shortcuts;
 import basemod.abstracts.CustomCard;
-import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

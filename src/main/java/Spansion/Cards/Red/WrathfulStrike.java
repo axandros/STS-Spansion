@@ -1,4 +1,4 @@
-package Spansion.Cards;
+package Spansion.Cards.Red;
 
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Spansion;

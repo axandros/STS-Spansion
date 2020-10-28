@@ -47,5 +47,15 @@
   "Spansion:ArchaicFuel": {
     "NAME": "Archaic Fuel",
     "DESCRIPTION": "When you exhaust a card, channel 1 Toxic Orb."
+  },
+  "Spansion:CalculatedStrike": {
+    "NAME": "Calculated Strike",
+    "DESCRIPTION": "Deal !D! Damage.  Increases based on Your stagger and the enemy's Mark"
+  },"Spansion:AFortifyingDrink": {
+  "NAME": "A Fortifying Drink",
+  "DESCRIPTION": "Gain !B! armor if Drunken, otherwise enter Drunken Stance."
+  },"Spansion:BalanceInAll": {
+  "NAME": "Balance in all Things",
+  "DESCRIPTION": "At the end of your turn, gain block if in Drunken Stance, Draw next turn if Calm, and Exit Wrath if in Wrath.  Exiting Wrath Depletes this power."
   }
 }

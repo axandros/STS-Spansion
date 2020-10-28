@@ -1,6 +1,20 @@
 package Spansion;
 
-import Spansion.Cards.*;
+import Spansion.Cards.Blue.ArchaicFuel;
+import Spansion.Cards.Blue.LethalInjection;
+import Spansion.Cards.Blue.ToxicEmissions;
+import Spansion.Cards.Colorless.AspectOfTheCrow;
+import Spansion.Cards.Colorless.FancyFootwork;
+import Spansion.Cards.Colorless.OldOneTwo;
+import Spansion.Cards.Green.EvasiveManeuvers;
+import Spansion.Cards.Green.FeintAttack;
+import Spansion.Cards.Green.OnTheFly;
+import Spansion.Cards.Purple.AFortifyingDrink;
+import Spansion.Cards.Purple.BalanceInAll;
+import Spansion.Cards.Purple.CalculatedStrike;
+import Spansion.Cards.Red.CauterizingBlood;
+import Spansion.Cards.Red.VisionsOfPain;
+import Spansion.Cards.Red.WrathfulStrike;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
@@ -13,6 +27,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -20,10 +35,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.BaseMod;
@@ -33,11 +45,14 @@ import basemod.interfaces.*;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sun.security.jca.GetInstance;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Random;
 
 @SpireInitializer
 public class Spansion implements PostExhaustSubscriber,
@@ -52,7 +67,7 @@ public class Spansion implements PostExhaustSubscriber,
     private static String modID;
 
     //This is for the in-game mod settings panel.
-    private static final String MODNAME = "Test Mod";
+    private static final String MODNAME = "Spansion";
     private static final String AUTHOR = "Axandros";
     private static final String DESCRIPTION = "A base for Slay the Spire to start your own mod from.";
 
@@ -88,6 +103,10 @@ public class Spansion implements PostExhaustSubscriber,
 
     public static String makeOrbPath(String resourcePath) {
         return getModID() + "Resources/images/orbs/" + resourcePath;
+    }
+
+    public static String makeStancePath(String resourcePath) {
+        return getModID() + "Resources/images/stance/" + resourcePath;
     }
 
     // === Subscribe and Initialize ===
@@ -176,6 +195,10 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new LethalInjection());
         BaseMod.addCard(new ToxicEmissions());
         BaseMod.addCard(new ArchaicFuel());
+        logger.info("Spansion: Loading Purple Cards.");
+        BaseMod.addCard(new AFortifyingDrink());
+        BaseMod.addCard(new BalanceInAll());
+        BaseMod.addCard(new CalculatedStrike());
     }
 
     // === Add Relics ===
@@ -286,6 +309,10 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.loadCustomStringsFile(OrbStrings.class,
            getModID() + "Resources/localization/eng/Spansion-Orb-Strings.json");
 
+        // Stance Strings
+        BaseMod.loadCustomStringsFile(StanceStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Stance-Strings.json");
+
         logger.info("Done editing strings");
     }
 
@@ -310,6 +337,14 @@ public class Spansion implements PostExhaustSubscriber,
                     new DamagedCountPower(plr, plr, 1))
             );
             logger.info("Damge count Power Applied.");
+        }
+    }
+
+    public static void ActionManagerDebug(){
+        ArrayList<AbstractGameAction> actions = AbstractDungeon.actionManager.actions;
+        for (int i = 0; i < actions.size(); i++) {
+            Spansion.logger.info(actions.get(i).toString());
+
         }
     }
 }

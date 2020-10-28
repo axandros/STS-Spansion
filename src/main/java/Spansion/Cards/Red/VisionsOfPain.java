@@ -1,4 +1,4 @@
-package Spansion.Cards;
+package Spansion.Cards.Red;
 
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
