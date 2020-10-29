@@ -15,6 +15,7 @@ import Spansion.Cards.Purple.CalculatedStrike;
 import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
+import Spansion.Events.IdentityCrisisEvent;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
@@ -34,6 +35,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -109,6 +111,10 @@ public class Spansion implements PostExhaustSubscriber,
         return getModID() + "Resources/images/stance/" + resourcePath;
     }
 
+    public static String makeEventPath(String resourcePath) {
+        return getModID() + "Resources/images/events/" + resourcePath;
+    }
+
     // === Subscribe and Initialize ===
 
     public Spansion() {
@@ -171,6 +177,9 @@ public class Spansion implements PostExhaustSubscriber,
         settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        // Add Events
+        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
 
         logger.info("Done loading badge Image and mod Options");
     }
@@ -294,8 +303,8 @@ public class Spansion implements PostExhaustSubscriber,
                 getModID() + "Resources/localization/eng/Spansion-Relic-Strings.json");
 
         // Event Strings
-        //BaseMod.loadCustomStringsFile(EventStrings.class,
-        //        getModID() + "Resources/localization/eng/Spansion-Event-Strings.json");
+        BaseMod.loadCustomStringsFile(EventStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Event-Strings.json");
 
         // PotionStrings
         //BaseMod.loadCustomStringsFile(PotionStrings.class,
