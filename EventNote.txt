@@ -1,0 +1,19 @@
+Event Effects.
+(nothing)
+Give/Duplicate/Upgrade/Transform/Remove Card(s).
+Give/Remove Relic.
+Give/Remove Potion(s).
+Gain/Lose hp/max hp.  Constant and Percent.
+Lose gold
+Minigame? (Match and wheel)
+
+
+Event modifiers
+Only certain acts. (1 & 2)
+Ascension matters (15+)
+Random reward (Designer-In-Spire)
+Prevent Event under certain conditions(HP > X)
+Random Requirement (Random Card/Gold/Potion)
+Last run progress.(Neow)
+
+A Note For Yourself - How is the card stored?
