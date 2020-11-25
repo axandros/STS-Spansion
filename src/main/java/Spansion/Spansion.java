@@ -15,6 +15,8 @@ import Spansion.Cards.Purple.CalculatedStrike;
 import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
+import Spansion.Events.GeneralShopEvent;
+import Spansion.Events.GeneralStoreEvent;
 import Spansion.Events.IdentityCrisisEvent;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
@@ -179,9 +181,16 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         // Add Events
-        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
+        EditEvents();
 
         logger.info("Done loading badge Image and mod Options");
+    }
+
+    private void EditEvents(){
+        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
+        BaseMod.addEvent(GeneralShopEvent.ID, GeneralShopEvent.class);
+        //BaseMod.addEvent(GeneralStoreEvent.ID, GeneralStoreEvent.class);
+        logger.info("General Shop/Store event ID: " + GeneralShopEvent.ID + ", " + GeneralStoreEvent.ID);
     }
 
     // Add Cards

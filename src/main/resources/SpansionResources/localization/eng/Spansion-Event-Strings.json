@@ -1,0 +1,58 @@
+{
+  "Spansion:IdentityCrisisEvent": {
+    "NAME": "Identity Crisis",
+    "DESCRIPTIONS": [
+      "As you move through ~The~ ~City~ you come across a #pPurple #pMirror. NL You look at it, but you see no reflection.",
+      "You see no one but #g~You~ #g~wish~ #g~to~ #g~become~ #g~someone.~",
+      "#r@YOU@ #r@EXIST@ #r@AND@ #r@ARE@ #r@VALID!@",
+      "#yYou #yare #yat #ypeace #ywith #yyour #ypresence.",
+      "You have no hands."
+    ],
+    "OPTIONS": [
+      "[Inspiration] #gGain #ga #gRandom #gStarting #gRelic.",
+      "[Denial] #rLose #r",
+      " #rMax #rHP. #gRemove #ga #gCard #gfrom #gyour #gdeck.",
+      "[Acceptance] #gGain #gApotheosis.",
+      "[TOUCH THE MIRROR] TOUCH TOUCH TO#C# TOUCH TO UCH TOUCH #rTOUCH TOUCH",
+      "[Leave]",
+      "Select card to remove."
+    ]
+  },
+  "Spansion:GeneralShopEvent":{
+    "NAME" : "General Shop",
+    "DESCRIPTIONS": [
+      "You come cross a quaint shop made with rough materials.  Inside is a portly old man. \"Oh Ho!\" he cries out. \"Come, look at my wares!\"",
+      "The man thanks you for your patronage.",
+      "\"Oh, a trade?  Maybe this will suit your tastes?\"",
+      "The man checks the door before going behind bis desk and procuring a small package. \"Do tak care not to be seen leaving with this.\"",
+      "You strike at the old man, but he puts up more of a fight than expected.  You grab a sack off his counter and run out the door."
+    ],
+    "Options": [
+      "Spend 20 Gold. Choose a common card.",
+      "Give a card, get 1 potion",
+      "Give ",
+      ", Get a stronger relic.",
+      "Lose 5 HP, Gain Injured and 100 Gold.",
+      "Leave."
+    ]
+  },
+  "Spansion:GeneralStoreEvent":{
+    "NAME" : "General Shop",
+    "DESCRIPTIONS": [
+      "You come cross a quaint shop made with rough materials.  Inside is a portly old man. \"Oh Ho!\" he cries out. \"Come, look at my wares!\"",
+      "The man thanks you for your patronage.",
+      "\"Oh, a trade?  Maybe this will suit your tastes?\"",
+      "The man checks the door before going behind bis desk and procuring a small package. \"Do tak care not to be seen leaving with this.\"",
+      "You strike at the old man, but he puts up more of a fight than expected.  You grab a sack off his counter and run out the door."
+    ],
+    "OPTIONS": [
+      "Spend 20 Gold. Choose a common card.",
+      "Give a card, get 1 potion",
+      "Give ",
+      ", Get a stronger relic.",
+      "Lose 5 HP, Gain Injured and 100 Gold.",
+      "Leave."
+    ]
+  }
+
+}
