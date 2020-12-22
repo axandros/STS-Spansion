@@ -3,6 +3,7 @@ package Spansion.Events;
 import Spansion.Spansion;
 import basemod.helpers.RelicType;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Injury;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -19,6 +20,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 import static Spansion.Spansion.makeEventPath;
 
@@ -67,8 +69,9 @@ public class GeneralShopEvent extends AbstractImageEvent {
         if (this.pickCard
                 &&
                 !AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-       	    AbstractCard c = ((AbstractCard)AbstractDungeon.gridSelectScreen.selectedCards.get(0)).makeCopy();
-            //AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+       	    AbstractCard c = (AbstractDungeon.gridSelectScreen.selectedCards.get(0)).makeCopy();
+            Spansion.logger.info("Adding " + c.cardID + " to the deck.");
+            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
       	    AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
 
@@ -80,13 +83,28 @@ public class GeneralShopEvent extends AbstractImageEvent {
             case INTRO:
                 switch(i){
                     case 0: // "Spend 20 Gold. Choose a common card.",
+                        // Status: Works!
                         AbstractDungeon.player.loseGold(20);
+                        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                        int c = 0;
+                        while(c < 3){
+                            AbstractCard card = AbstractDungeon.getCard(AbstractCard.CardRarity.COMMON);
+                            if(!group.contains(card)){
+                                Spansion.logger.info("GS: Adding " + card.cardID + " to list.");
+                                group.addToBottom(card);
+                                c++;
+                         }
+                        }
+                        //AbstractDungeon.gridSelectScreen.
+                        AbstractDungeon.gridSelectScreen.open(group, 1, OPTIONS[6], false);
                         this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                         this.imageEventText.updateDialogOption(0, OPTIONS[5]);
                         this.imageEventText.clearRemainingOptions();
                         screen = CUR_SCREEN.COMPLETE;
+                        this.pickCard = true;
                         break;
                     case 1: // "Give a card, get 1 random potion",
+                        // Status: Crashes the game.
                         AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards.get(0));
                         AbstractDungeon.player.obtainPotion(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.COMMON,false));
                         this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
@@ -113,6 +131,11 @@ public class GeneralShopEvent extends AbstractImageEvent {
                 }
                 break;
             case COMPLETE:
+                switch(i){
+                    default:
+                        openMap();
+                }
+
 
         }
     }

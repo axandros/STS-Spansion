@@ -27,31 +27,14 @@
       "The man checks the door before going behind bis desk and procuring a small package. \"Do tak care not to be seen leaving with this.\"",
       "You strike at the old man, but he puts up more of a fight than expected.  You grab a sack off his counter and run out the door."
     ],
-    "Options": [
-      "Spend 20 Gold. Choose a common card.",
-      "Give a card, get 1 potion",
-      "Give ",
-      ", Get a stronger relic.",
-      "Lose 5 HP, Gain Injured and 100 Gold.",
-      "Leave."
-    ]
-  },
-  "Spansion:GeneralStoreEvent":{
-    "NAME" : "General Shop",
-    "DESCRIPTIONS": [
-      "You come cross a quaint shop made with rough materials.  Inside is a portly old man. \"Oh Ho!\" he cries out. \"Come, look at my wares!\"",
-      "The man thanks you for your patronage.",
-      "\"Oh, a trade?  Maybe this will suit your tastes?\"",
-      "The man checks the door before going behind bis desk and procuring a small package. \"Do tak care not to be seen leaving with this.\"",
-      "You strike at the old man, but he puts up more of a fight than expected.  You grab a sack off his counter and run out the door."
-    ],
     "OPTIONS": [
       "Spend 20 Gold. Choose a common card.",
       "Give a card, get 1 potion",
       "Give ",
       ", Get a stronger relic.",
       "Lose 5 HP, Gain Injured and 100 Gold.",
-      "Leave."
+      "Leave.",
+      "Choose 1 Card."
     ]
   }
 
