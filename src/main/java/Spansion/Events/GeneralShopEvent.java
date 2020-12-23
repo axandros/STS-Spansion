@@ -2,6 +2,7 @@ package Spansion.Events;
 
 import Spansion.Spansion;
 import basemod.helpers.RelicType;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import java.util.Random;
@@ -35,6 +37,7 @@ public class GeneralShopEvent extends AbstractImageEvent {
     public static final String IMG = makeEventPath("IdentityCrisisEvent.png");
     private CUR_SCREEN screen = CUR_SCREEN.INTRO;
     private boolean pickCard = false; // Do we bring up the card selection screen?
+    private boolean giveCard = false;
 
 
     private AbstractRelic RelicToTrade;
@@ -73,6 +76,21 @@ public class GeneralShopEvent extends AbstractImageEvent {
             Spansion.logger.info("Adding " + c.cardID + " to the deck.");
             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
       	    AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
+            this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+            this.imageEventText.clearRemainingOptions();
+            screen = CUR_SCREEN.COMPLETE;
+        } else if( giveCard
+                &&!AbstractDungeon.isScreenUp
+                && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+            AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.remove(0);
+            AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+            AbstractDungeon.player.masterDeck.removeCard(c);
+            AbstractDungeon.player.obtainPotion(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.COMMON,false));
+            this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
+            this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+            this.imageEventText.clearRemainingOptions();
+            screen = CUR_SCREEN.COMPLETE;
         }
 
     }
@@ -95,30 +113,33 @@ public class GeneralShopEvent extends AbstractImageEvent {
                                 c++;
                          }
                         }
-                        //AbstractDungeon.gridSelectScreen.
                         AbstractDungeon.gridSelectScreen.open(group, 1, OPTIONS[6], false);
-                        this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-                        this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-                        this.imageEventText.clearRemainingOptions();
-                        screen = CUR_SCREEN.COMPLETE;
                         this.pickCard = true;
                         break;
                     case 1: // "Give a card, get 1 random potion",
-                        // Status: Crashes the game.
-                        AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards.get(0));
-                        AbstractDungeon.player.obtainPotion(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.COMMON,false));
-                        this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
-                        this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-                        this.imageEventText.clearRemainingOptions();
-                        screen = CUR_SCREEN.COMPLETE;
+                        // Status: Works!
+                        giveCard = true;
+                        if(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).size() > 0){
+                            AbstractDungeon.gridSelectScreen.open(
+                            CardGroup.getGroupWithoutBottledCards(
+                                    AbstractDungeon.player.masterDeck.getPurgeableCards()),
+                                    1, OPTIONS[7], false, false, false, true);
+                        }
+
                         break;
                     case 2: // "Give a random, pre-selected relic, Get relic of one tier higher..",
+                        // Status: Does nothing.
+                        Spansion.logger.info("Update Body Text");
                         this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
+                        Spansion.logger.info("Update Dialog Options");
                         this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+                        Spansion.logger.info("Clear Remaining Options");
                         this.imageEventText.clearRemainingOptions();
+                        Spansion.logger.info("CurScreen = Complete");
                         screen = CUR_SCREEN.COMPLETE;
                         break;
                     case 3: // "Lose 5 HP, Gain Injured and 100 Gold."
+                        // Status: Works!
                         AbstractDungeon.player.damage(new DamageInfo(AbstractDungeon.player, AttackDamage));
                         AbstractDungeon.player.gainGold(GoldStolen);
                         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(
