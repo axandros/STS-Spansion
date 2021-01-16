@@ -1,8 +1,8 @@
 package Spansion.Events;
 
 import Spansion.Spansion;
-import basemod.helpers.RelicType;
-import com.badlogic.gdx.math.collision.BoundingBox;
+import Spansion.util.Shortcuts;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.cards.curses.Injury;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
@@ -22,7 +21,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.logging.Logger;
 
 import static Spansion.Spansion.makeEventPath;
 
@@ -41,6 +39,7 @@ public class GeneralShopEvent extends AbstractImageEvent {
 
 
     private AbstractRelic RelicToTrade;
+    private AbstractRelic RelicToRecieve;
     private int AttackDamage = 5;
     private int GoldStolen = 100;
 
@@ -55,14 +54,37 @@ public class GeneralShopEvent extends AbstractImageEvent {
         relics.addAll(AbstractDungeon.player.relics);
         Collections.shuffle(relics, new Random(AbstractDungeon.miscRng.randomLong()));
 
-        RelicToTrade = relics.get(0);
-        //RelicToTrade;
 
+        RelicToTrade = relics.get(0);
+
+        AbstractRelic.RelicTier rarity = Shortcuts.GetRelicTier(RelicToTrade);
+        AbstractRelic.RelicTier targetTier = AbstractRelic.RelicTier.COMMON;
+        // RelicRarity.COMMON   // Constant Expression Required
+        // Common               // This is fine.
+        switch(rarity){
+            case COMMON:
+                //AbstractDungeon.uncommonRelicPool.get
+                targetTier = AbstractRelic.RelicTier.UNCOMMON;
+                break;
+            case UNCOMMON:
+                targetTier = AbstractRelic.RelicTier.SHOP;
+                break;
+            case SHOP:
+                targetTier = AbstractRelic.RelicTier.RARE;
+                break;
+            case RARE:
+            case BOSS:
+            case STARTER:
+            default:
+                targetTier = AbstractRelic.RelicTier.BOSS;
+                break;
+        }
+        RelicToRecieve = AbstractDungeon.returnRandomRelic(targetTier).makeCopy();
 
         // Set description and options
         imageEventText.setDialogOption(OPTIONS[0]);
         imageEventText.setDialogOption(OPTIONS[1]);
-        imageEventText.setDialogOption(OPTIONS[2] + OPTIONS[3]);
+        imageEventText.setDialogOption(OPTIONS[2] + RelicToTrade.name + OPTIONS[3]);
         imageEventText.setDialogOption(OPTIONS[4]);
     }
 
@@ -117,8 +139,9 @@ public class GeneralShopEvent extends AbstractImageEvent {
                         this.pickCard = true;
                         break;
                     case 1: // "Give a card, get 1 random potion",
-                        // Status: Works!
+                        // Status: Crashes the game.
                         giveCard = true;
+                        //AbstractPotion
                         if(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).size() > 0){
                             AbstractDungeon.gridSelectScreen.open(
                             CardGroup.getGroupWithoutBottledCards(
@@ -128,7 +151,13 @@ public class GeneralShopEvent extends AbstractImageEvent {
 
                         break;
                     case 2: // "Give a random, pre-selected relic, Get relic of one tier higher..",
-                        // Status: Does nothing.
+                        // Status: Works!
+
+                        AbstractDungeon.player.loseRelic(RelicToTrade.relicId);
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), RelicToRecieve);
+                        //AbstractDungeon.player.relics.add(RelicToRecieve);
+                        //AbstractDungeon.player.updateViewRelicControls();
+
                         Spansion.logger.info("Update Body Text");
                         this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
                         Spansion.logger.info("Update Dialog Options");
