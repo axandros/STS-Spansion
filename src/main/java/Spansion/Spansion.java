@@ -16,7 +16,6 @@ import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
 import Spansion.Events.GeneralShopEvent;
-import Spansion.Events.GeneralStoreEvent;
 import Spansion.Events.IdentityCrisisEvent;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
@@ -37,7 +36,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -49,15 +47,12 @@ import basemod.interfaces.*;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.security.jca.GetInstance;
 
-import java.beans.EventHandler;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Random;
 
 @SpireInitializer
 public class Spansion implements PostExhaustSubscriber,
@@ -190,8 +185,7 @@ public class Spansion implements PostExhaustSubscriber,
     private void EditEvents(){
         BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
         BaseMod.addEvent(GeneralShopEvent.ID, GeneralShopEvent.class);
-        //BaseMod.addEvent(GeneralStoreEvent.ID, GeneralStoreEvent.class);
-        logger.info("General Shop/Store event ID: " + GeneralShopEvent.ID + ", " + GeneralStoreEvent.ID);
+        logger.info("General Shop/Store event ID: " + GeneralShopEvent.ID);
     }
 
     // Add Cards

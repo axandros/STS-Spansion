@@ -52,9 +52,9 @@ public class StaggerPower extends AbstractPower implements CloneablePowerInterfa
     public void atEndOfTurn(boolean isPlayer) {
         super.atEndOfTurn(isPlayer);
 
-        int damage = Math.max(1, (int)Math.round(this.amount * .33));
-        AbstractDungeon.actionManager.addToBottom( new LoseHPAction(owner, owner, damage, AbstractGameAction.AttackEffect.SMASH));
-        this.amount = Math.max(0, amount - damage);
+        int damage = Math.max(1, (int)Math.round(this.amount * 0.33) );
+        AbstractDungeon.actionManager.addToBottom(new LoseHPAction(owner,owner, damage));
+        this.amount = Math.max(0, amount-damage);
 
         updateDescription();
     }

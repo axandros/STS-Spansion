@@ -33,22 +33,19 @@ public class DrunkenStance extends AbstractStance {
         Spansion.logger.info("Drunken ID: " + STANCE_ID);
     }
 
-
-
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        Spansion.logger.info("Damage Receive: " + damage);
-        Spansion.ActionManagerDebug();
         float dmg = damage;
-        if (damageType == DamageInfo.DamageType.NORMAL) {
-            dmg = damage * 0.66F;
-            int stagg = (int)Math.ceil(damage - dmg);
+        if(damageType != DamageInfo.DamageType.HP_LOSS){
+            dmg = damage * 0.5f;
+            int stagg = (int)Math.ceil(damage-dmg);
             AbstractPlayer plr = AbstractDungeon.player;
-            //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(plr, plr,new StaggerPower(plr, plr, stagg)));
-            Spansion.logger.info("Damage reduced to " + dmg);
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(plr, plr, new StaggerPower(plr, plr, stagg)));
         }
         return dmg;
+
     }
+
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];
     }
