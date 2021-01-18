@@ -3,8 +3,12 @@ package Spansion.Cards.Purple;
 import Spansion.Powers.StaggerPower;
 import Spansion.Spansion;
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -34,6 +38,8 @@ public class CalculatedStrike extends CustomCard {
     public CalculatedStrike() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
+        magicNumber = baseMagicNumber = 2;
+        tags.add(CardTags.STRIKE);
     }
 
     @Override
@@ -63,7 +69,10 @@ public class CalculatedStrike extends CustomCard {
             }
         }
 
-        int damageToDeal = baseDamage + stagger/2 + mark;
+        int damageToDeal = baseDamage + stagger/baseMagicNumber + mark;
+
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(abstractMonster
+                , new DamageInfo(abstractPlayer, damageToDeal), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
     }
 }

@@ -68,7 +68,6 @@ public class BalanceInAllPower extends AbstractPower implements CloneablePowerIn
             AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player, amount * 5));
         }
 
-
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
