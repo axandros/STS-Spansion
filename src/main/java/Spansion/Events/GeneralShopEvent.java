@@ -84,6 +84,7 @@ public class GeneralShopEvent extends AbstractImageEvent {
         // Set description and options
         imageEventText.setDialogOption(OPTIONS[0]);
         boolean OpenPotionSlots = AbstractDungeon.player.potionSlots > AbstractDungeon.player.potions.size();
+        Spansion.logger.info("Open Potion Slots: "+ AbstractDungeon.player.potionSlots+ ", " + AbstractDungeon.player.potions.size()+"," + OpenPotionSlots);
         imageEventText.setDialogOption(OPTIONS[1], OpenPotionSlots);
         imageEventText.setDialogOption(OPTIONS[2] + RelicToTrade.name + OPTIONS[3]);
         imageEventText.setDialogOption(OPTIONS[4]);
