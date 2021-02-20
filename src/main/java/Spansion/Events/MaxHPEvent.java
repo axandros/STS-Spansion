@@ -18,7 +18,7 @@ public class MaxHPEvent extends AbstractImageEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     public static final String IMG = makeEventPath("IdentityCrisisEvent.png");
 
-    private enum CUR_SCREEN{ INTRO, RESULT };
+    private enum CUR_SCREEN{ INTRO, RESULT }
 
     private MaxHPEvent.CUR_SCREEN screen = MaxHPEvent.CUR_SCREEN.INTRO;
 
@@ -28,6 +28,11 @@ public class MaxHPEvent extends AbstractImageEvent {
 
     public MaxHPEvent() {
         super(NAME, DESCRIPTIONS[0], IMG);
+
+        imageEventText.setDialogOption(OPTIONS[0] + HP_GAIN_HEAL + OPTIONS[1]);
+        imageEventText.setDialogOption(OPTIONS[0] + HP_GAIN_NO_HEAL + OPTIONS[2]);
+        imageEventText.setDialogOption(OPTIONS[3] + HP_LOSE + OPTIONS[2]);
+
     }
 
     @Override
@@ -37,19 +42,25 @@ public class MaxHPEvent extends AbstractImageEvent {
                 switch(i){
                     case 0:
                         // Gain max hp and heal
+                        // increase max hp heals automatically.
                         AbstractDungeon.player.increaseMaxHp(HP_GAIN_HEAL, false);
-                        AbstractDungeon.player.heal(HP_GAIN_HEAL);
+                        //AbstractDungeon.player.heal(HP_GAIN_HEAL);
+                        imageEventText.updateBodyText(DESCRIPTIONS[1] + HP_GAIN_HEAL + DESCRIPTIONS[3]);
                         break;
                     case 1:
                         // Gain max hp but don't heal
-                        AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSE, DamageInfo.DamageType.HP_LOSS));
+                        AbstractDungeon.player.increaseMaxHp(HP_GAIN_NO_HEAL, true);
+                        imageEventText.updateBodyText(DESCRIPTIONS[1] + HP_GAIN_NO_HEAL + DESCRIPTIONS[4]);
                         break;
                     case 2:
                         // Lose max HP
                         AbstractDungeon.player.decreaseMaxHealth(HP_LOSE);
+                        imageEventText.updateBodyText(DESCRIPTIONS[2] + HP_LOSE + DESCRIPTIONS[5]);
                         break;
-
                 }
+                imageEventText.updateDialogOption(0, OPTIONS[4]);
+                imageEventText.clearRemainingOptions();
+                screen = CUR_SCREEN.RESULT;
                 break;
             case RESULT:
                 openMap();

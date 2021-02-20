@@ -66,8 +66,8 @@
     "OPTIONS": [
       "Heal ",
       "Take ",
+      " HP",
       " damage",
-      " gold.",
       "Leave."
     ]
   },
@@ -75,10 +75,10 @@
     "NAME" : "MaxHP Event",
     "DESCRIPTIONS": [
       "This event demonstrates gaining and losing max HP.",
-      "You received "
+      "You received ",
       "You have lost ",
       " max hp and was healed for the same amount.",
-      " max hp, but did not heal."
+      " max hp, but did not heal.",
       " max hp."
     ],
     "OPTIONS": [

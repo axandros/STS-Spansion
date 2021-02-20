@@ -15,8 +15,7 @@ import Spansion.Cards.Purple.CalculatedStrike;
 import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
-import Spansion.Events.GeneralShopEvent;
-import Spansion.Events.IdentityCrisisEvent;
+import Spansion.Events.*;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
@@ -185,6 +184,9 @@ public class Spansion implements PostExhaustSubscriber,
     private void EditEvents(){
         BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
         BaseMod.addEvent(GeneralShopEvent.ID, GeneralShopEvent.class);
+        BaseMod.addEvent(HPEvent.ID, HPEvent.class);
+        BaseMod.addEvent(GoldEvent.ID, GoldEvent.class);
+        BaseMod.addEvent(MaxHPEvent.ID, MaxHPEvent.class);
         logger.info("General Shop/Store event ID: " + GeneralShopEvent.ID);
     }
 

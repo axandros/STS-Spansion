@@ -18,7 +18,7 @@ public class HPEvent  extends AbstractImageEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     public static final String IMG = makeEventPath("IdentityCrisisEvent.png");
 
-    private enum CUR_SCREEN{ INTRO, RESULT };
+    private enum CUR_SCREEN{ INTRO, RESULT }
 
     private HPEvent.CUR_SCREEN screen = HPEvent.CUR_SCREEN.INTRO;
 
@@ -27,6 +27,9 @@ public class HPEvent  extends AbstractImageEvent {
 
     public HPEvent() {
         super(NAME, DESCRIPTIONS[0], IMG);
+
+        imageEventText.setDialogOption(OPTIONS[0] + HP_GAIN + OPTIONS[2]);
+        imageEventText.setDialogOption(OPTIONS[1] + HP_LOSE + OPTIONS[3]);
     }
 
     @Override
@@ -37,13 +40,17 @@ public class HPEvent  extends AbstractImageEvent {
                     case 0:
                         // Gain Specific Gold
                         AbstractDungeon.player.heal(HP_GAIN);
+                        imageEventText.updateBodyText(DESCRIPTIONS[1] + HP_GAIN + DESCRIPTIONS[3]);
                         break;
                     case 1:
                         // Gain Random Gold
                         AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSE, DamageInfo.DamageType.HP_LOSS));
+                        imageEventText.updateBodyText(DESCRIPTIONS[2] + HP_LOSE + DESCRIPTIONS[3]);
                         break;
-
                 }
+                imageEventText.updateDialogOption(0, OPTIONS[4]);
+                imageEventText.clearRemainingOptions();
+                screen = CUR_SCREEN.RESULT;
                 break;
             case RESULT:
                 openMap();

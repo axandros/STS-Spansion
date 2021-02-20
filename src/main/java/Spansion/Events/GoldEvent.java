@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 
 import static Spansion.Spansion.makeEventPath;
 
@@ -17,7 +18,7 @@ public class GoldEvent extends AbstractImageEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     public static final String IMG = makeEventPath("IdentityCrisisEvent.png");
 
-    private enum CUR_SCREEN{ INTRO, RESULT };
+    private enum CUR_SCREEN{ INTRO, RESULT }
 
     private CUR_SCREEN screen = CUR_SCREEN.INTRO;
 
@@ -33,6 +34,11 @@ public class GoldEvent extends AbstractImageEvent {
         RandGoldGain = AbstractDungeon.miscRng.random(0,100);
         RandGoldLose = AbstractDungeon.miscRng.random(0,
                 AbstractDungeon.player.gold);
+
+        imageEventText.setDialogOption(OPTIONS[0] + GOLD_GAIN + OPTIONS[2]);
+        imageEventText.setDialogOption(OPTIONS[0] + RandGoldGain + OPTIONS[2]);
+        imageEventText.setDialogOption(OPTIONS[1] + GOLD_LOSE + OPTIONS[2]);
+        imageEventText.setDialogOption(OPTIONS[1] + RandGoldLose + OPTIONS[2]);
     }
 
     @Override
@@ -43,21 +49,30 @@ public class GoldEvent extends AbstractImageEvent {
                     case 0:
                         // Gain Specific Gold
                         AbstractDungeon.player.gainGold(GOLD_GAIN);
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[1] + GOLD_GAIN + DESCRIPTIONS[3]);
+                        this.imageEventText.updateDialogOption(0, OPTIONS[3]);
+                        AbstractDungeon.effectList.add(new RainingGoldEffect(GOLD_GAIN));
                         break;
                     case 1:
                         // Gain Random Gold
                         AbstractDungeon.player.gainGold(RandGoldGain);
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[1] + RandGoldGain + DESCRIPTIONS[4]);
+                        AbstractDungeon.effectList.add(new RainingGoldEffect(RandGoldGain));
                         break;
                     case 2:
                         // Lose Specific Gold
-                        AbstractDungeon.player.gainGold(GOLD_LOSE);
+                        AbstractDungeon.player.loseGold(GOLD_LOSE);
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[2] + GOLD_LOSE + DESCRIPTIONS[3]);
                         break;
                     case 3:
                         // Lose Random Gold
-                        AbstractDungeon.player.gainGold(RandGoldLose);
+                        AbstractDungeon.player.loseGold(RandGoldLose);
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[2] + RandGoldLose + DESCRIPTIONS[4]);
                         break;
-
                 }
+                this.imageEventText.updateDialogOption(0, OPTIONS[3]);
+                this.imageEventText.clearRemainingOptions();
+                this.screen = CUR_SCREEN.RESULT;
                 break;
             case RESULT:
                 openMap();
