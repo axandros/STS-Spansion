@@ -40,20 +40,11 @@ public class MaxHPEvent extends AbstractImageEvent {
         switch (screen){
             case INTRO:
                 switch(i){
-                    case 0:
-                        // Gain max hp and heal
-                        // increase max hp heals automatically.
+                    case 0: // Gain max hp
                         AbstractDungeon.player.increaseMaxHp(HP_GAIN_HEAL, false);
-                        //AbstractDungeon.player.heal(HP_GAIN_HEAL);
                         imageEventText.updateBodyText(DESCRIPTIONS[1] + HP_GAIN_HEAL + DESCRIPTIONS[3]);
                         break;
-                    case 1:
-                        // Gain max hp but don't heal
-                        AbstractDungeon.player.increaseMaxHp(HP_GAIN_NO_HEAL, true);
-                        imageEventText.updateBodyText(DESCRIPTIONS[1] + HP_GAIN_NO_HEAL + DESCRIPTIONS[4]);
-                        break;
-                    case 2:
-                        // Lose max HP
+                    case 1: // Lose max hp
                         AbstractDungeon.player.decreaseMaxHealth(HP_LOSE);
                         imageEventText.updateBodyText(DESCRIPTIONS[2] + HP_LOSE + DESCRIPTIONS[5]);
                         break;

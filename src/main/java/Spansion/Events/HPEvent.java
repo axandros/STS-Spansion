@@ -37,13 +37,11 @@ public class HPEvent  extends AbstractImageEvent {
         switch (screen){
             case INTRO:
                 switch(i){
-                    case 0:
-                        // Gain Specific Gold
+                    case 0: // Heal Damage
                         AbstractDungeon.player.heal(HP_GAIN);
                         imageEventText.updateBodyText(DESCRIPTIONS[1] + HP_GAIN + DESCRIPTIONS[3]);
                         break;
-                    case 1:
-                        // Gain Random Gold
+                    case 1: // Take Damage
                         AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSE, DamageInfo.DamageType.HP_LOSS));
                         imageEventText.updateBodyText(DESCRIPTIONS[2] + HP_LOSE + DESCRIPTIONS[3]);
                         break;
