@@ -37,6 +37,23 @@
       "Choose 1 card to gain.",
       "Choose 1 card to lose."
     ]
+  },
+  "Spansion:GenericEvent": {
+    "NAME": "Generic Event",
+    "DESCRIPTIONS": [
+      "This is the basic description for the event.",
+      "You selected option 0.",
+      "You selected option 1.",
+      "You selection option 2"
+    ],
+    "OPTIONS": [
+      "Option 0",
+      "Option 1",
+      "Option 2",
+      "Quit"
+    ]
   }
 
-}
+
+ }
+

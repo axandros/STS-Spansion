@@ -16,6 +16,7 @@ import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
 import Spansion.Events.GeneralShopEvent;
+import Spansion.Events.GenericEvent;
 import Spansion.Events.IdentityCrisisEvent;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
