@@ -84,6 +84,7 @@ public class GeneralShopEvent extends AbstractImageEvent {
         // Set description and options
         imageEventText.setDialogOption(OPTIONS[0]);
         boolean OpenPotionSlots = AbstractDungeon.player.potionSlots > AbstractDungeon.player.potions.size();
+        Spansion.logger.info("Open Potion Slots: "+ AbstractDungeon.player.potionSlots+ ", " + AbstractDungeon.player.potions.size()+"," + OpenPotionSlots);
         imageEventText.setDialogOption(OPTIONS[1], OpenPotionSlots);
         imageEventText.setDialogOption(OPTIONS[2] + RelicToTrade.name + OPTIONS[3]);
         imageEventText.setDialogOption(OPTIONS[4]);
@@ -106,13 +107,16 @@ public class GeneralShopEvent extends AbstractImageEvent {
         } else if( giveCard
                 &&!AbstractDungeon.isScreenUp
                 && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.remove(0);
+            AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+            AbstractDungeon.gridSelectScreen.selectedCards.clear();
             AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+            //AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0), (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
             AbstractDungeon.player.masterDeck.removeCard(c);
             AbstractDungeon.player.obtainPotion(AbstractDungeon.returnRandomPotion(AbstractPotion.PotionRarity.COMMON,false));
             this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
             this.imageEventText.updateDialogOption(0, OPTIONS[5]);
             this.imageEventText.clearRemainingOptions();
+            Spansion.logger.info("Screen Set to Complete.");
             screen = CUR_SCREEN.COMPLETE;
         }
 
@@ -140,9 +144,8 @@ public class GeneralShopEvent extends AbstractImageEvent {
                         this.pickCard = true;
                         break;
                     case 1: // "Give a card, get 1 random potion",
-                        // Status: Crashes the game.
+                        // Status: Crashes when potions full?
                         giveCard = true;
-                        //AbstractPotion
                         if(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).size() > 0){
                             AbstractDungeon.gridSelectScreen.open(
                             CardGroup.getGroupWithoutBottledCards(
@@ -182,10 +185,11 @@ public class GeneralShopEvent extends AbstractImageEvent {
                 }
                 break;
             case COMPLETE:
-                switch(i){
-                    default:
+                //switch(i){
+                //    case 0:
+                //    default:
                         openMap();
-                }
+                //}
 
 
         }

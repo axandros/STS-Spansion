@@ -38,22 +38,130 @@
       "Choose 1 card to lose."
     ]
   },
-  "Spansion:GenericEvent": {
-    "NAME": "Generic Event",
+  "Spansion:GoldEvent":{
+    "NAME" : "Gold Event",
     "DESCRIPTIONS": [
-      "This is the basic description for the event.",
-      "You selected option 0.",
-      "You selected option 1.",
-      "You selection option 2"
+      "This event demonstrates the giving and taking of gold.",
+      "You have gained ",
+      "You have lost ",
+      " gold, which was a specified number.",
+      " gold, which was a random number."
     ],
     "OPTIONS": [
-      "Option 0",
-      "Option 1",
-      "Option 2",
-      "Quit"
+      "Gain ",
+      "lose ",
+      " gold.",
+      "Leave."
+    ]
+  },
+  "Spansion:HPEvent":{
+    "NAME" : "HP Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates receiving healing and taking damage.",
+      "You have healed ",
+      "You have lost ",
+      " hp, which was a specified number.",
+      " hp, which was a random number."
+    ],
+    "OPTIONS": [
+      "Heal ",
+      "Take ",
+      " HP",
+      " damage",
+      "Leave."
+    ]
+  },
+  "Spansion:MaxHPEvent":{
+    "NAME" : "MaxHP Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates gaining and losing max HP.",
+      "You received ",
+      "You have lost ",
+      " max hp and was healed for the same amount.",
+      " max hp, but did not heal.",
+      " max hp."
+    ],
+    "OPTIONS": [
+      "Gain ",
+      " max HP and heal for that amount.",
+      " max HP.",
+      "Lose ",
+      "Leave."
+    ]
+  },
+  "Spansion:RelicEvent":{
+    "NAME" : "Relic Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates obtaining and losing relics.",
+      "You obtained ",
+      "You lost ",
+      " which was specified in advance.",
+      " which was randomly selected."
+    ],
+    "OPTIONS": [
+      "Obtain ",
+      "Lose ",
+      ".",
+      "Leave."
+    ]
+  },
+  "Spansion:CardSimpleEvent":{
+    "NAME" : "Simple Card Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates basic card actions in events.",
+      "You added ",
+      "You removed ",
+      " from",
+      " to",
+      " your deck, which was randomly selected",
+      " your deck, which was predetermined.",
+      "The card selection grid was used to determine which card to ",
+      "remove.",
+      "add."
+    ],
+    "OPTIONS": [
+      "Add ",
+      " to your deck.  ",
+      "Remove ",
+      " from your deck.  ",
+      "This was predetermined.",
+      "This was randomly selected.",
+      "Select a skill to add.",
+      "Select a skill to remove.",
+      "Leave."
+    ]
+  },
+  "Spansion:CardComplexEvent":{
+    "NAME" : "Complex Card Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates complex card actions in events.",
+      "The card selection grid was used to determine which card to ",
+      "upgrade.",
+      "transform.",
+      " random cards were upgraded."
+    ],
+    "OPTIONS": [
+      "Transform a card.",
+      "Duplicate a card.",
+      "Upgrade ",
+      "a random card.",
+      " random cards.",
+      "Leave."
+    ]
+  },
+  "Spansion:PotionEvent":{
+    "NAME" : "Potion Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates potion actions in events.",
+      "Potions are given using the rewards screen.",
+      "Taking potions is tricky, but ultimately doable with references."
+    ],
+    "OPTIONS": [
+      "Get a random potion.",
+      "Lose ",
+      ".",
+      "Leave."
     ]
   }
 
-
- }
-
+}
