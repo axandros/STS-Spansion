@@ -187,6 +187,7 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addEvent(HPEvent.ID, HPEvent.class);
         BaseMod.addEvent(GoldEvent.ID, GoldEvent.class);
         BaseMod.addEvent(MaxHPEvent.ID, MaxHPEvent.class);
+        BaseMod.addEvent(RelicEvent.ID, RelicEvent.class);
         logger.info("General Shop/Store event ID: " + GeneralShopEvent.ID);
     }
 

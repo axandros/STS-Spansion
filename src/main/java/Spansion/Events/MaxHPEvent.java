@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
 
 import static Spansion.Spansion.makeEventPath;
@@ -30,7 +31,7 @@ public class MaxHPEvent extends AbstractImageEvent {
         super(NAME, DESCRIPTIONS[0], IMG);
 
         imageEventText.setDialogOption(OPTIONS[0] + HP_GAIN_HEAL + OPTIONS[1]);
-        imageEventText.setDialogOption(OPTIONS[0] + HP_GAIN_NO_HEAL + OPTIONS[2]);
+        //imageEventText.setDialogOption(OPTIONS[0] + HP_GAIN_NO_HEAL + OPTIONS[2]);
         imageEventText.setDialogOption(OPTIONS[3] + HP_LOSE + OPTIONS[2]);
 
     }
@@ -46,6 +47,8 @@ public class MaxHPEvent extends AbstractImageEvent {
                         break;
                     case 1: // Lose max hp
                         AbstractDungeon.player.decreaseMaxHealth(HP_LOSE);
+                        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED, false);
+                        CardCrawlGame.sound.play("BLUNT_FAST");
                         imageEventText.updateBodyText(DESCRIPTIONS[2] + HP_LOSE + DESCRIPTIONS[5]);
                         break;
                 }
