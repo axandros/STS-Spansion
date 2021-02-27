@@ -106,46 +106,25 @@
       " to get "
     ]
   },
-  "Spansion:CardSimpleEvent":{
-    "NAME" : "Simple Card Event",
+  "Spansion:CardEvent":{
+    "NAME" : "Card Event",
     "DESCRIPTIONS": [
-      "This event demonstrates basic card actions in events.",
-      "You added ",
-      "You removed ",
-      " from",
-      " to",
-      " your deck, which was randomly selected",
-      " your deck, which was predetermined.",
+      "This event demonstrates card actions in events.",
+      "You added a card to your deck.",
+      "You removed a card from your deck",
       "The card selection grid was used to determine which card to ",
-      "remove.",
-      "add."
-    ],
-    "OPTIONS": [
-      "Add ",
-      " to your deck.  ",
-      "Remove ",
-      " from your deck.  ",
-      "This was predetermined.",
-      "This was randomly selected.",
-      "Select a skill to add.",
-      "Select a skill to remove.",
-      "Leave."
-    ]
-  },
-  "Spansion:CardComplexEvent":{
-    "NAME" : "Complex Card Event",
-    "DESCRIPTIONS": [
-      "This event demonstrates complex card actions in events.",
-      "The card selection grid was used to determine which card to ",
-      "upgrade.",
-      "transform.",
+      " transform.",
+      " duplicate",
       " random cards were upgraded."
     ],
     "OPTIONS": [
+      "Add a card to your deck.",
+      "Remove a card from your deck.",
+      "Select a skill to add.",
+      "Select a skill to remove.",
       "Transform a card.",
       "Duplicate a card.",
       "Upgrade ",
-      "a random card.",
       " random cards.",
       "Leave."
     ]
@@ -161,6 +140,7 @@
       "Get a random potion.",
       "Lose ",
       ".",
+      "[Lose a random potion]: Requires a potion.",
       "Leave."
     ]
   }
