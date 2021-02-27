@@ -111,17 +111,26 @@
     "DESCRIPTIONS": [
       "This event demonstrates card actions in events.",
       "You added a card to your deck.",
-      "You removed a card from your deck",
-      "The card selection grid was used to determine which card to ",
-      " transform.",
-      " duplicate",
-      " random cards were upgraded."
+      "You removed a card from your deck"
     ],
     "OPTIONS": [
       "Add a card to your deck.",
       "Remove a card from your deck.",
       "Select a skill to add.",
       "Select a skill to remove.",
+      "Leave."
+    ]
+  },
+  "Spansion:ComplexCardEvent":{
+    "NAME" : "Card Event",
+    "DESCRIPTIONS": [
+      "This event demonstrates card additional actions in events.",
+      "The card selection grid was used to determine which card to ",
+      " transform.",
+      " duplicate",
+      " random cards were upgraded."
+    ],
+    "OPTIONS": [
       "Transform a card.",
       "Duplicate a card.",
       "Upgrade ",

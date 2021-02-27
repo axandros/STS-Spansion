@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 
 import static Spansion.Spansion.makeEventPath;
 
-public class CardEvent extends AbstractImageEvent {
+public class ComplexCardEvent extends AbstractImageEvent {
 
-    public static final String ID = Spansion.makeID("CardEvent");
+    public static final String ID = Spansion.makeID("ComplexCardEvent");
     public static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
 
     private static final String NAME = eventStrings.NAME;
@@ -21,7 +21,11 @@ public class CardEvent extends AbstractImageEvent {
 
     private CUR_SCREEN screen = CUR_SCREEN.INTRO;
 
-    public CardEvent() {
+    private boolean chooseUpgrade = false;
+    private boolean chooseTransform = false;
+    private boolean chooseDuplicate = false;
+
+    public ComplexCardEvent() {
         super(NAME, DESCRIPTIONS[0], IMG);
 
         imageEventText.setDialogOption(OPTIONS[0]);
