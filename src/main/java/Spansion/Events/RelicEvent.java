@@ -49,6 +49,7 @@ public class RelicEvent extends AbstractImageEvent {
         imageEventText.setDialogOption(OPTIONS[0] + RELIC_TO_GAIN_RANDOM.name + OPTIONS[2], RELIC_TO_GAIN_RANDOM);
         imageEventText.setDialogOption(OPTIONS[1] + REQUIRED_RELIC + OPTIONS[2], !HasIdol, RelicLibrary.getRelic(REQUIRED_RELIC));
         imageEventText.setDialogOption(OPTIONS[1] + RELIC_TO_LOSE_RANDOM.name + OPTIONS[2], RELIC_TO_LOSE_RANDOM);
+        imageEventText.setDialogOption(OPTIONS[1] + RELIC_TO_LOSE_RANDOM.name + OPTIONS[4] + RELIC_TO_GAIN_RANDOM + OPTIONS[2], RELIC_TO_GAIN_RANDOM);
     }
 
     @Override
@@ -77,6 +78,17 @@ public class RelicEvent extends AbstractImageEvent {
                         // Lose Random Relic
                         AbstractDungeon.player.loseRelic(RELIC_TO_LOSE_RANDOM.relicId);
                         imageEventText.updateBodyText(DESCRIPTIONS[2] + REQUIRED_RELIC + DESCRIPTIONS[4]);
+                        break;
+                    case 4:
+                        int relicAtIndex = 0;
+                        for (int j = 0; j < AbstractDungeon.player.relics.size(); j++) {
+                            if ((AbstractDungeon.player.relics.get(j)).relicId.equals(RELIC_TO_LOSE_RANDOM.relicId)) {
+                                relicAtIndex = j;
+                                break;
+                            }
+                        }
+                        AbstractDungeon.player.relics.get(relicAtIndex).onUnequip();
+                        RELIC_TO_GAIN_RANDOM.instantObtain(AbstractDungeon.player, relicAtIndex, false);
                         break;
                 }
                 this.imageEventText.updateDialogOption(0, OPTIONS[3]);
