@@ -64,10 +64,13 @@ public class ComplexCardEvent extends AbstractImageEvent {
                     case 2: // Upgrade N Cards
                         //CardGroup group = AbstractDungeon.player.masterDeck
                         ArrayList<AbstractCard> upgradableCards = new ArrayList<AbstractCard>();
+                        upgradableCards = AbstractDungeon.player.masterDeck.getUpgradableCards().group;
+                        /*
                         for (AbstractCard c:AbstractDungeon.player.masterDeck.group ) {
                             if(c.canUpgrade())
                             {upgradableCards.add(c);}
                         }
+                        */
                         Collections.shuffle(upgradableCards, new Random(AbstractDungeon.miscRng.randomLong()));
                         for(int j = 0; j < upgrades && j < upgradableCards.size(); j++) {
                             AbstractCard card = upgradableCards.get(j);
@@ -86,6 +89,7 @@ public class ComplexCardEvent extends AbstractImageEvent {
                 screen = CUR_SCREEN.COMPLETE;
                 break;
             case COMPLETE:
+                AbstractDungeon.player.hand.clear();
                 openMap();
                 break;
         }
