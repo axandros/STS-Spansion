@@ -1,11 +1,13 @@
 {
   "Spansion:OldOneTwo": {
     "NAME": "The Ol' One-Two",
-    "DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit."
+    "DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit.",
+    "UPGRADE_DESCRIPTION": "Deal !D! Damage twice, applying !M! vulnerable after each hit."
   },
   "Spansion:FancyFootwork": {
     "NAME": "Fancy Footwork",
-    "DESCRIPTION": "If the enemy intend to attack, gain !B! Block.  Otherwise draw !M! Card(s)."
+    "DESCRIPTION": "If the enemy intend to attack, gain !B! Block.  Otherwise draw !M! Card(s).",
+    "UPGRADE_DESCRIPTION":"If the enemy intend to attack, gain !B! Block.  Otherwise draw !M! Card(s)."
   },
   "Spansion:AspectOfTheCrow": {
     "NAME": "Aspect Of The Crow",
@@ -14,48 +16,62 @@
   },
   "Spansion:CauterizingBlood": {
     "NAME": "Cauterizing Blood",
-    "DESCRIPTION": "At the end of your turn, heal for half the damage you took on your turn."
+    "DESCRIPTION": "At the end of your turn, heal for half the damage you took on your turn.",
+    "UPGRADE_DESCRIPTION":"At the end of your turn, heal for half the damage you took on your turn."
   },
   "Spansion:VisionsOfPain": {
     "NAME": "Visions Of Pain",
-    "DESCRIPTION": "Take !D! Damage.  Draw !M! Cards"
+    "DESCRIPTION": "Take !D! Damage.  Draw !M! Cards",
+    "UPGRADE_DESCRIPTION":"Take !D! Damage.  Draw !M! Cards"
   },
   "Spansion:WrathfulStrike": {
     "NAME": "Wrathful Strike",
-    "DESCRIPTION": "Deal !D! damage.  Increases by !M! every time you take damage on your turn."
+    "DESCRIPTION": "Deal !D! damage.  Increases by !M! every time you take damage on your turn.",
+    "UPGRADE_DESCRIPTION":"Deal !D! damage.  Increases by !M! every time you take damage on your turn."
   },
   "Spansion:EvasiveManeuvers": {
     "NAME": "Evasive Maneuvers",
-    "DESCRIPTION": "Gain !B! Block.  If this card is discarded, gain !M! Dexterity."
+    "DESCRIPTION": "Gain !B! Block.  If this card is discarded, gain !M! Dexterity.",
+    "UPGRADE_DESCRIPTION":"Gain !B! Block.  If this card is discarded, gain !M! Dexterity."
   },
   "Spansion:OnTheFly": {
     "NAME": "On The Fly",
-    "DESCRIPTION": "When you discard a card, deal Damage to a random enemy equal to the cost of the card."
+    "DESCRIPTION": "When you discard a card, deal Damage to a random enemy equal to the cost of the card.",
+    "UPGRADE_DESCRIPTION":"When you discard a card, deal Damage to a random enemy equal to the cost of the card."
   },
   "Spansion:FeintAttack": {
     "NAME": "Feint Attack",
-    "DESCRIPTION": "Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn."
+    "DESCRIPTION": "Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn.",
+    "UPGRADE_DESCRIPTION":"Discard a card.  Deal !D! damage to target enemy and gain !B! block this turn.  Gain !B! block next turn."
   },
   "Spansion:LethalInjection": {
     "NAME": "Lethal Injection",
-    "DESCRIPTION": "Deal !D! Damage. Increase this by !M! each time you play a 0 cost card. NL Channel a Toxic Orb."
+    "DESCRIPTION": "Deal !D! Damage. Increase this by !M! each time you play a 0 cost card. NL Channel a Toxic Orb.",
+    "UPGRADE_DESCRIPTION":"Deal !D! Damage. Increase this by !M! each time you play a 0 cost card. NL Channel a Toxic Orb."
   },
   "Spansion:ToxicEmissions": {
     "NAME": "Toxic Emissions",
-    "DESCRIPTION": "Inflict !M! weak and vulnerable on all enemies for each different type of orb you have."
+    "DESCRIPTION": "Inflict !M! weak and vulnerable on all enemies for each different type of orb you have.",
+    "UPGRADE_DESCRIPTION":"Inflict !M! weak and vulnerable on all enemies for each different type of orb you have."
   },
   "Spansion:ArchaicFuel": {
     "NAME": "Archaic Fuel",
-    "DESCRIPTION": "When you exhaust a card, channel 1 Toxic Orb."
+    "DESCRIPTION": "When you exhaust a card, channel 1 Toxic Orb.",
+    "UPGRADE_DESCRIPTION":"When you exhaust a card, channel 1 Toxic Orb."
   },
   "Spansion:CalculatedStrike": {
     "NAME": "Calculated Strike",
-    "DESCRIPTION": "Deal !D! Damage.  Increases based on Your stagger and the enemy's Mark"
-  },"Spansion:AFortifyingDrink": {
-  "NAME": "A Fortifying Drink",
-  "DESCRIPTION": "Gain !B! armor if Drunken, otherwise enter Drunken Stance."
-  },"Spansion:BalanceInAll": {
-  "NAME": "Balance in all Things",
-  "DESCRIPTION": "At the end of your turn, gain block if in Drunken Stance, Draw next turn if Calm, and Exit Wrath if in Wrath.  Exiting Wrath Depletes this power."
+    "DESCRIPTION": "Deal !D! Damage.  Increases based on Your stagger and the enemy's Mark",
+    "UPGRADE_DESCRIPTION":"Deal !D! Damage.  Increases based on Your stagger and the enemy's Mark"
+  },
+  "Spansion:AFortifyingDrink": {
+    "NAME": "A Fortifying Drink",
+    "DESCRIPTION": "Gain !B! armor if Drunken, otherwise enter Drunken Stance.",
+    "UPGRADE_DESCRIPTION":"Gain !B! armor if Drunken, otherwise enter Drunken Stance."
+  },
+  "Spansion:BalanceInAll": {
+    "NAME": "Balance in all Things",
+    "DESCRIPTION": "At the end of your turn, gain block if in Drunken Stance, Draw next turn if Calm, and Exit Wrath if in Wrath.  Exiting Wrath Depletes this power.",
+    "UPGRADE_DESCRIPTION":"At the end of your turn, gain block if in Drunken Stance, Draw next turn if Calm, and Exit Wrath if in Wrath.  Exiting Wrath Depletes this power."
   }
 }
