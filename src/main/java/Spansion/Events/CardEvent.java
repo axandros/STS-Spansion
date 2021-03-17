@@ -116,23 +116,25 @@ public class CardEvent extends AbstractImageEvent {
             while (containsDupe) {
                 containsDupe = false;
 
+
                 for (AbstractCard c : group.group) {
                     if (c.cardID.equals(card.cardID)) {
                         containsDupe = true;
+                        Spansion.logger.info("Dup is True " + card.cardID);
                         card = AbstractDungeon.getCard(AbstractDungeon.rollRarity()).makeCopy();
                     }
                 }
             }
 
-            if (!group.contains(card)) {
+//            if (!group.contains(card)) {
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     r.onPreviewObtainCard(card);
                 }
                 group.addToBottom(card);
-            } else {
-                Spansion.logger.info("Found 'duplicate' " + card.cardID);
-                i--;
-            }
+//            } else {
+//                Spansion.logger.info("Found 'duplicate' " + card.cardID);
+ //               i--;
+ //           }
         }
         return group;
     }
