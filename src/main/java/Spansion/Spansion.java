@@ -15,6 +15,7 @@ import Spansion.Cards.Purple.CalculatedStrike;
 import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
+import Spansion.Events.*;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
@@ -45,14 +46,12 @@ import basemod.interfaces.*;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.security.jca.GetInstance;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Random;
 
 @SpireInitializer
 public class Spansion implements PostExhaustSubscriber,
@@ -107,6 +106,10 @@ public class Spansion implements PostExhaustSubscriber,
 
     public static String makeStancePath(String resourcePath) {
         return getModID() + "Resources/images/stance/" + resourcePath;
+    }
+
+    public static String makeEventPath(String resourcePath) {
+        return getModID() + "Resources/images/events/" + resourcePath;
     }
 
     // === Subscribe and Initialize ===
@@ -172,7 +175,23 @@ public class Spansion implements PostExhaustSubscriber,
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
+        // Add Events
+        EditEvents();
+
         logger.info("Done loading badge Image and mod Options");
+    }
+
+    private void EditEvents(){
+        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
+        BaseMod.addEvent(GeneralShopEvent.ID, GeneralShopEvent.class);
+        BaseMod.addEvent(HPEvent.ID, HPEvent.class);
+        BaseMod.addEvent(GoldEvent.ID, GoldEvent.class);
+        BaseMod.addEvent(MaxHPEvent.ID, MaxHPEvent.class);
+        BaseMod.addEvent(RelicEvent.ID, RelicEvent.class);
+        BaseMod.addEvent(PotionEvent.ID, PotionEvent.class);
+        BaseMod.addEvent(CardEvent.ID, CardEvent.class);
+        BaseMod.addEvent(ComplexCardEvent.ID, ComplexCardEvent.class);
+        logger.info("General Shop/Store event ID: " + GeneralShopEvent.ID);
     }
 
     // Add Cards
@@ -294,8 +313,8 @@ public class Spansion implements PostExhaustSubscriber,
                 getModID() + "Resources/localization/eng/Spansion-Relic-Strings.json");
 
         // Event Strings
-        //BaseMod.loadCustomStringsFile(EventStrings.class,
-        //        getModID() + "Resources/localization/eng/Spansion-Event-Strings.json");
+        BaseMod.loadCustomStringsFile(EventStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Event-Strings.json");
 
         // PotionStrings
         //BaseMod.loadCustomStringsFile(PotionStrings.class,

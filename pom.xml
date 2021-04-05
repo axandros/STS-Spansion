@@ -9,6 +9,10 @@
     <name>Spansion.Spansion</name>
     <description>A small expansion to Slay the Spire, adding new cards, relics, and events!</description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
