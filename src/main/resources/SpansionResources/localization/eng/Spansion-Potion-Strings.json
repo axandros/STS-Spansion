@@ -1,0 +1,10 @@
+{
+  "Spansion:GildedPotion": {
+    "NAME": "Gilded Potion",
+    "DESCRIPTIONS": ["Gain ", " Gold."]
+  },
+  "Spansion:ToxicOrbPotion": {
+  "NAME": "Toxic Orb Potion",
+  "DESCRIPTIONS": ["Channel ", " Toxic Orbs."]
+}
+}

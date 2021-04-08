@@ -16,6 +16,8 @@ import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
 import Spansion.Events.*;
+import Spansion.Potions.GildedPotion;
+import Spansion.Potions.ToxicOrbPotion;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
 import Spansion.util.IDCheckDontTouchPls;
@@ -25,6 +27,7 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -35,8 +38,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.BaseMod;
@@ -177,12 +183,14 @@ public class Spansion implements PostExhaustSubscriber,
 
         // Add Events
         EditEvents();
+        // Add Potions
+        receiveEditPotions();
 
         logger.info("Done loading badge Image and mod Options");
     }
 
     private void EditEvents(){
-        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
+        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class, Exordium.ID);
         BaseMod.addEvent(GeneralShopEvent.ID, GeneralShopEvent.class);
         BaseMod.addEvent(HPEvent.ID, HPEvent.class);
         BaseMod.addEvent(GoldEvent.ID, GoldEvent.class);
@@ -227,7 +235,12 @@ public class Spansion implements PostExhaustSubscriber,
 
         BaseMod.addRelic(new TestRelic(), RelicType.SHARED);// .addRelicToCustomPool(new TestRelic(), AbstractCard.CardColor.RED);
     }
+    // Potion Colors in RGB
 
+    public void receiveEditPotions(){
+        BaseMod.addPotion(GildedPotion.class, GildedPotion.LIQUID_COLOR, GildedPotion.HYBRID_COLOR, GildedPotion.SPOTS_COLOR, GildedPotion.POTION_ID);
+        BaseMod.addPotion(ToxicOrbPotion.class, ToxicOrbPotion.LIQUID_COLOR, ToxicOrbPotion.HYBRID_COLOR, ToxicOrbPotion.SPOTS_COLOR, ToxicOrbPotion.POTION_ID, AbstractPlayer.PlayerClass.DEFECT);
+    }
 
 
     @Override
@@ -247,8 +260,6 @@ public class Spansion implements PostExhaustSubscriber,
     public void receivePostDungeonInitialize() {
         resetCounts();
     }
-
-
 
     // === Do Not Edit ===
     public static void setModID(String ID) {
@@ -289,8 +300,6 @@ public class Spansion implements PostExhaustSubscriber,
     }
     // === Resume Editing ===
 
-
-
     public static String makeID(String idText) {
         return getModID() + ":" + idText;
     }
@@ -317,8 +326,8 @@ public class Spansion implements PostExhaustSubscriber,
                 getModID() + "Resources/localization/eng/Spansion-Event-Strings.json");
 
         // PotionStrings
-        //BaseMod.loadCustomStringsFile(PotionStrings.class,
-        //       getModID() + "Resources/localization/eng/Spansion-Potion-Strings.json");
+        BaseMod.loadCustomStringsFile(PotionStrings.class,
+               getModID() + "Resources/localization/eng/Spansion-Potion-Strings.json");
 
         // CharacterStrings
         //BaseMod.loadCustomStringsFile(CharacterStrings.class,
