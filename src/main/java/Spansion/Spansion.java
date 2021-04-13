@@ -16,6 +16,7 @@ import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
 import Spansion.Events.*;
+import Spansion.Potions.FumingPotion;
 import Spansion.Potions.GildedPotion;
 import Spansion.Potions.ToxicOrbPotion;
 import Spansion.Powers.DamagedCountPower;
@@ -240,6 +241,7 @@ public class Spansion implements PostExhaustSubscriber,
     public void receiveEditPotions(){
         BaseMod.addPotion(GildedPotion.class, GildedPotion.LIQUID_COLOR, GildedPotion.HYBRID_COLOR, GildedPotion.SPOTS_COLOR, GildedPotion.POTION_ID);
         BaseMod.addPotion(ToxicOrbPotion.class, ToxicOrbPotion.LIQUID_COLOR, ToxicOrbPotion.HYBRID_COLOR, ToxicOrbPotion.SPOTS_COLOR, ToxicOrbPotion.POTION_ID, AbstractPlayer.PlayerClass.DEFECT);
+        BaseMod.addPotion(FumingPotion.class, FumingPotion.LIQUID_COLOR, FumingPotion.HYBRID_COLOR, FumingPotion.SPOTS_COLOR, FumingPotion.POTION_ID);
     }
 
 

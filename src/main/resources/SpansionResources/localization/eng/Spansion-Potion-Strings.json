@@ -6,5 +6,9 @@
   "Spansion:ToxicOrbPotion": {
   "NAME": "Toxic Orb Potion",
   "DESCRIPTIONS": ["Channel ", " Toxic Orbs."]
-}
+  },
+  "Spansion:FumingPotion": {
+    "NAME": "Fuming Potion",
+    "DESCRIPTIONS": ["Inflict ", " Weakness."]
+  }
 }
