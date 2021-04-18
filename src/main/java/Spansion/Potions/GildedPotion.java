@@ -1,6 +1,7 @@
 package Spansion.Potions;
 
 import Spansion.Spansion;
+import basemod.patches.com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen.EverythingFix;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -27,10 +28,7 @@ public class GildedPotion extends AbstractPotion {
 
     public GildedPotion(){
         super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.FRUIT);
-        potency = getPotency();
-        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
-        isThrown = false;
-        tips.add(new PowerTip(name, description));
+        //initializeData();
     }
 
     @Override
@@ -61,5 +59,14 @@ public class GildedPotion extends AbstractPotion {
          }
 
          return true;
+    }
+
+    @Override
+    public void initializeData() {
+        potency = getPotency();
+        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
+        isThrown = false;
+        this.tips.clear();
+        tips.add(new PowerTip(name, description));
     }
 }

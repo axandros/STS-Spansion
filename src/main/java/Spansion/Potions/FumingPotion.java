@@ -26,11 +26,6 @@ public class FumingPotion extends AbstractPotion {
 
     public FumingPotion(){
         super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.FRUIT);
-        potency = getPotency();
-        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
-        isThrown = true;
-        targetRequired = true;
-        tips.add(new PowerTip(name, description));
     }
 
     @Override
@@ -42,11 +37,23 @@ public class FumingPotion extends AbstractPotion {
 
     @Override
     public int getPotency(int i) {
+
         return 2;
     }
 
     @Override
     public AbstractPotion makeCopy() {
         return new FumingPotion();
+    }
+
+    // We ge some weird behaviors if we initialize in our constructor.
+    @Override
+    public void initializeData() {
+        potency = getPotency();
+        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
+        isThrown = true;
+        targetRequired = true;
+        this.tips.clear();
+        tips.add(new PowerTip(name, description));
     }
 }

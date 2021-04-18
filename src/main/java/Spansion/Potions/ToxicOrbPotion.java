@@ -26,29 +26,35 @@ public class ToxicOrbPotion extends AbstractPotion {
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
     public ToxicOrbPotion(){
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.FRUIT);
-        potency = getPotency();
-        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
-        isThrown = false;
-        tips.add(new PowerTip(name, description));
+        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.GHOST, PotionColor.FRUIT);
     }
 
     @Override
     public void use(AbstractCreature abstractCreature) {
+        int numOfEnemy = AbstractDungeon.getCurrRoom().monsters.monsters.size();
         int potency = getPotency();
-        for(int i = 0; i < potency; i++){
+        for(int i = 0; i < potency; i+=2){
             AbstractDungeon.actionManager.addToBottom(new ChannelAction(new ToxicOrb()));
         }
     }
 
     @Override
     public int getPotency(int i) {
-        //AbstractDungeon.
+        //AbstractDungeon
         return 1;
     }
 
     @Override
     public AbstractPotion makeCopy() {
         return null;
+    }
+
+    @Override
+    public void initializeData() {
+        potency = getPotency();
+        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
+        isThrown = false;
+        this.tips.clear();
+        tips.add(new PowerTip(name, description));
     }
 }
