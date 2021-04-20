@@ -8,7 +8,7 @@
   "DESCRIPTIONS": ["Channel ", " Toxic Orbs."]
   },
   "Spansion:FumingPotion": {
-    "NAME": "Fuming Potion",
-    "DESCRIPTIONS": ["Inflict ", " Weakness."]
+    "NAME": "Fulminating Potion",
+    "DESCRIPTIONS": ["Inflict ", " Weakness and resistance."]
   }
 }

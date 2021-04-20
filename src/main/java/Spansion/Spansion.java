@@ -239,8 +239,11 @@ public class Spansion implements PostExhaustSubscriber,
     // Potion Colors in RGB
 
     public void receiveEditPotions(){
+        logger.info("Adding Gilded Potion");
         BaseMod.addPotion(GildedPotion.class, GildedPotion.LIQUID_COLOR, GildedPotion.HYBRID_COLOR, GildedPotion.SPOTS_COLOR, GildedPotion.POTION_ID);
+        logger.info("Adding Toxic Orb Potion");
         BaseMod.addPotion(ToxicOrbPotion.class, ToxicOrbPotion.LIQUID_COLOR, ToxicOrbPotion.HYBRID_COLOR, ToxicOrbPotion.SPOTS_COLOR, ToxicOrbPotion.POTION_ID, AbstractPlayer.PlayerClass.DEFECT);
+        logger.info("Adding Fuming Potion");
         BaseMod.addPotion(FumingPotion.class, FumingPotion.LIQUID_COLOR, FumingPotion.HYBRID_COLOR, FumingPotion.SPOTS_COLOR, FumingPotion.POTION_ID);
     }
 

@@ -22,12 +22,14 @@ public class GildedPotion extends AbstractPotion {
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
-    public static final Color LIQUID_COLOR = CardHelper.getColor(215.0f, 183.0f, 64.0f);
-    public static final Color HYBRID_COLOR = CardHelper.getColor(10.0f, 30.0f, 20.0f);
-    public static final Color SPOTS_COLOR = CardHelper.getColor(100.0f, 25.0f, 10.0f);
+    // Liquid color a=0 is black.
+    public static final Color LIQUID_COLOR = new Color(0.85f, 0.0f, 0.15f, 1);//CardHelper.getColor(215.0f, 183.0f, 64.0f).;
+    // Hybrid/Spots color a=0 is transparent.
+    public static final Color HYBRID_COLOR = new Color(0f, 1f, 0f, 1);
+    public static final Color SPOTS_COLOR = new Color(0f, 1f, 0f, 1);
 
     public GildedPotion(){
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.FRUIT);
+        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, null);
         //initializeData();
     }
 

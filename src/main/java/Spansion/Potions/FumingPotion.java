@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 public class FumingPotion extends AbstractPotion {
@@ -20,12 +21,12 @@ public class FumingPotion extends AbstractPotion {
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
-    public static final Color LIQUID_COLOR = CardHelper.getColor(125.0f, 183.0f, 64.0f);
-    public static final Color HYBRID_COLOR = CardHelper.getColor(100.0f, 30.0f, 200.0f);
-    public static final Color SPOTS_COLOR = CardHelper.getColor(20.0f, 25.0f, 10.0f);
+    public static final Color LIQUID_COLOR = CardHelper.getColor(160.0f, 120.0f, 10.0f);
+    public static final Color HYBRID_COLOR = CardHelper.getColor(160.0f, 120.0f, 10.0f);;
+    public static final Color SPOTS_COLOR =  CardHelper.getColor(15.0f, 220.0f, 16.0f);
 
     public FumingPotion(){
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.FRUIT);
+        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, null);
     }
 
     @Override
@@ -33,11 +34,13 @@ public class FumingPotion extends AbstractPotion {
         AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction(abstractCreature, AbstractDungeon.player,
                         new WeakPower(abstractCreature, getPotency(), false), getPotency()));
+        AbstractDungeon.actionManager.addToBottom(
+                new ApplyPowerAction(abstractCreature, AbstractDungeon.player,
+                        new VulnerablePower(abstractCreature, getPotency(), false), getPotency()));
     }
 
     @Override
     public int getPotency(int i) {
-
         return 2;
     }
 
