@@ -15,6 +15,7 @@ import Spansion.Cards.Purple.CalculatedStrike;
 import Spansion.Cards.Red.CauterizingBlood;
 import Spansion.Cards.Red.VisionsOfPain;
 import Spansion.Cards.Red.WrathfulStrike;
+import Spansion.Encounters.SogBogWitch;
 import Spansion.Events.*;
 import Spansion.Powers.DamagedCountPower;
 import Spansion.Relics.*;
@@ -35,8 +36,19 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.MonsterInfo;
+import com.megacrit.cardcrawl.monsters.beyond.Deca;
+import com.megacrit.cardcrawl.monsters.beyond.Donu;
+import com.megacrit.cardcrawl.monsters.city.Healer;
+import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue;
+import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
+import com.megacrit.cardcrawl.monsters.exordium.SlimeBoss;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.BaseMod;
@@ -176,12 +188,14 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         // Add Events
-        EditEvents();
+        receiveEditEvents();
+        // Add encounters
+        receiveEditMonsters();
 
         logger.info("Done loading badge Image and mod Options");
     }
 
-    private void EditEvents(){
+    public void receiveEditEvents(){
         BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class);
         BaseMod.addEvent(GeneralShopEvent.ID, GeneralShopEvent.class);
         BaseMod.addEvent(HPEvent.ID, HPEvent.class);
@@ -195,7 +209,6 @@ public class Spansion implements PostExhaustSubscriber,
     }
 
     // Add Cards
-
     @Override
     public void receiveEditCards() {
         logger.info("Spansion: Loading Colorless Cards.");
@@ -220,7 +233,7 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addCard(new CalculatedStrike());
     }
 
-    // === Add Relics ===
+    // Add Relics
     @Override
     public void receiveEditRelics() {
         logger.info("Adding Relics");
@@ -228,6 +241,23 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addRelic(new TestRelic(), RelicType.SHARED);// .addRelicToCustomPool(new TestRelic(), AbstractCard.CardColor.RED);
     }
 
+    // Add Encounters
+    public void receiveEditMonsters() {
+        /* Breaking the array out of the lambda doesn't work.  Probably because it's a lambda.
+        AbstractMonster[] adventureParty = new AbstractMonster[] {
+                new Healer(150,0),
+                new SlaverBlue(-150,0)
+        };
+        BaseMod.addMonster("Spansion:AdventureParty", () -> new MonsterGroup(adventureParty));
+        */ BaseMod.addMonster("Spansion:AdventureParty", () -> new MonsterGroup(new AbstractMonster[] {
+                new Healer(150,0),
+                new SlaverBlue(-150,0)
+        }));
+        BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:AdventureParty", 2.0f));
+        BaseMod.addMonster("Spansion:Deca", Donu.NAME, () -> new Deca());
+        BaseMod.addStrongMonsterEncounter(TheCity.ID, new MonsterInfo("Spansion:Deca", 2.0f));
+        //BaseMod.addStrongMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:CustomElite", 1.5f));
+    }
 
 
     @Override

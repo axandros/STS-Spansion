@@ -1,0 +1,11 @@
+{
+  "conspire:SogBogWitch": {
+    "NAME": "SogBog Witch",
+    "MOVES": [
+      "Curse",
+      "Spell",
+      "Brew"
+    ],
+    "DIALOG": ["Hehehe"]
+  }
+}
