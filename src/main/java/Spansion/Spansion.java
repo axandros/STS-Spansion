@@ -256,7 +256,10 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:AdventureParty", 2.0f));
         BaseMod.addMonster("Spansion:Deca", Donu.NAME, () -> new Deca());
         BaseMod.addStrongMonsterEncounter(TheCity.ID, new MonsterInfo("Spansion:Deca", 2.0f));
-        //BaseMod.addStrongMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:CustomElite", 1.5f));
+
+
+        BaseMod.addMonster("Spansion:SogBogWitch", SogBogWitch.NAME, () -> new SogBogWitch(0,0));
+        BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:SogBogWitch", 2.0f));
     }
 
 

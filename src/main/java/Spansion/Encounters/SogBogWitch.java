@@ -3,7 +3,12 @@ package Spansion.Encounters;
 import Spansion.Spansion;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -34,7 +39,8 @@ public class SogBogWitch extends AbstractMonster {
         super(NAME, ID, maxHealth, HB_X, HB_Y, HB_W, HB_H, null, x, y);
 
         // Animation stuff.
-        this.loadAnimation("conspire/images/monsters/FuzzyDie/skeleton.atlas", "conspire/images/monsters/FuzzyDie/skeleton.json", 1.0f);
+        String resourceDirectory = "SpansionResources/images/char/defaultChar/";
+        this.loadAnimation(resourceDirectory + "skeleton.atlas", resourceDirectory+"skeleton.json", 1.0f);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
 
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -43,15 +49,17 @@ public class SogBogWitch extends AbstractMonster {
 
     @Override
     public void takeTurn() {
-
+        switch(this.nextMove){
+            default:
+                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                break;
+        }
+        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(int i) {
-        if(!curseCast){
-
-        }else{
-
-        }
+        this.setMove((byte) 0, Intent.ATTACK);
     }
 }
