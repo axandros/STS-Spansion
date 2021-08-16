@@ -7,10 +7,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.logging.Logger;
 
 
 /// The SogBog Witch
@@ -39,23 +42,31 @@ public class SogBogWitch extends AbstractMonster {
         super(NAME, ID, maxHealth, HB_X, HB_Y, HB_W, HB_H, null, x, y);
 
         // Animation stuff.
-        String resourceDirectory = "SpansionResources/images/char/defaultChar/";
+        String resourceDirectory = "SpansionResources/images/char/defaultCharacter/";
         this.loadAnimation(resourceDirectory + "skeleton.atlas", resourceDirectory+"skeleton.json", 1.0f);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+        //AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
 
-        e.setTime(e.getEndTime() * MathUtils.random());
+        //e.setTime(e.getEndTime() * MathUtils.random());
 
     }
 
     @Override
     public void takeTurn() {
+        Spansion.logger.info("Entering \"Take Turn\"");
         switch(this.nextMove){
             default:
-                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                Spansion.logger.info("Entering switch-default.");
+                //AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
+                AbstractDungeon.actionManager.addToBottom(
+                        new DamageAction(
+                                AbstractDungeon.player
+                                , new DamageInfo(this, 4)
+                        , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 break;
         }
+        Spansion.logger.info("Ending Switch.");
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        Spansion.logger.info("Exiting \"Take Turn\"");
     }
 
     @Override
