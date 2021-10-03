@@ -99,7 +99,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <target>
-                                        <copy file="target/Spansion.jar" tofile="E:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\Spansion.jar"/>
+                                        <copy file="target/Spansion.jar" tofile="G:\SteamLibrary\steamapps\common\SlayTheSpire\mods\Spansion.jar"/>
                                     </target>
                                 </configuration>
                                 <goals>
