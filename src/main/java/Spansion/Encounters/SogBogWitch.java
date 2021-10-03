@@ -1,6 +1,9 @@
 package Spansion.Encounters;
 
 import Spansion.Spansion;
+import basemod.abstracts.CustomMonster;
+import basemod.animations.AbstractAnimation;
+import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -20,13 +23,14 @@ import java.util.logging.Logger;
 // For her first move, she'll Cast a curse.
 // This is a debuff on the player and herself.
 // If she dies with the curse active, A Curse will be added to the player's deck.
-public class SogBogWitch extends AbstractMonster {
+public class SogBogWitch extends CustomMonster {
     public static final String ID = Spansion.makeID("SogBogWitch");
     public static final String ENCOUNTER_NAME = ID;
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+    //public SpriterAnimation anim;
 
     // location
     private static final float HB_X = 0.0f;
@@ -38,17 +42,33 @@ public class SogBogWitch extends AbstractMonster {
 
     private boolean curseCast = false;
 
+    public SogBogWitch() {
+        super(NAME,
+                ID,
+                maxHealth,
+                HB_X,
+                HB_Y,
+                HB_W,
+                HB_H,
+                null);
+
+        animation = new SpriterAnimation(Spansion.makeCharPath("Cultist.scml"));
+
+
+    }
+
+    /*
     public SogBogWitch(float x, float y) {
         super(NAME, ID, maxHealth, HB_X, HB_Y, HB_W, HB_H, null, x, y);
-
         // Animation stuff.
-        String resourceDirectory = "SpansionResources/images/char/defaultCharacter/";
-        this.loadAnimation(resourceDirectory + "skeleton.atlas", resourceDirectory+"skeleton.json", 1.0f);
+        //String resourceDirectory = "SpansionResources/images/char/defaultCharacter/";
+        //this.loadAnimation(resourceDirectory + "skeleton.atlas", resourceDirectory+"skeleton.json", 1.0f);
         //AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
 
         //e.setTime(e.getEndTime() * MathUtils.random());
-
     }
+
+     */
 
     @Override
     public void takeTurn() {

@@ -123,6 +123,9 @@ public class Spansion implements PostExhaustSubscriber,
     public static String makeEventPath(String resourcePath) {
         return getModID() + "Resources/images/events/" + resourcePath;
     }
+    public static String makeCharPath(String resourcePath) {
+        return getModID() + "Resources/images/characters/" + resourcePath;
+    }
 
     // === Subscribe and Initialize ===
 
@@ -258,7 +261,7 @@ public class Spansion implements PostExhaustSubscriber,
         BaseMod.addStrongMonsterEncounter(TheCity.ID, new MonsterInfo("Spansion:Deca", 2.0f));
 
 
-        BaseMod.addMonster("Spansion:SogBogWitch", SogBogWitch.NAME, () -> new SogBogWitch(0,0));
+        BaseMod.addMonster("Spansion:SogBogWitch", SogBogWitch.NAME, () -> new SogBogWitch());
         BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:SogBogWitch", 2.0f));
     }
 
