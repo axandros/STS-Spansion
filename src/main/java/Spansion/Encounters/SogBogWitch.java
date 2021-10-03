@@ -62,6 +62,11 @@ public class SogBogWitch extends AbstractMonster {
                                 AbstractDungeon.player
                                 , new DamageInfo(this, 4)
                         , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                AbstractDungeon.actionManager.addToBottom(
+                        new DamageAction(
+                                AbstractDungeon.player
+                                , new DamageInfo(this, 4)
+                                , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 break;
         }
         Spansion.logger.info("Ending Switch.");
@@ -71,6 +76,6 @@ public class SogBogWitch extends AbstractMonster {
 
     @Override
     protected void getMove(int i) {
-        this.setMove((byte) 0, Intent.ATTACK);
+        this.setMove((byte) 0, Intent.ATTACK, 4, 2, true);
     }
 }
