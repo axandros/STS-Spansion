@@ -54,7 +54,6 @@ public class SogBogWitch extends CustomMonster {
 
         animation = new SpriterAnimation(Spansion.makeCharPath("Cultist.scml"));
 
-
     }
 
     /*
