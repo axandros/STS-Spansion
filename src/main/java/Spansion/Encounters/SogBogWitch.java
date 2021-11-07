@@ -7,7 +7,9 @@ import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -15,6 +17,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import java.util.logging.Logger;
 
@@ -37,10 +41,15 @@ public class SogBogWitch extends CustomMonster {
     private static final float HB_Y = -15.0f;
     private static final float HB_W = 320.0f;
     private static final float HB_H = 240.0f;
-    // stats
+    // Stats
     public static final int maxHealth = 70;
 
+    // Moves
     private boolean curseCast = false;
+    private static final int WEAK_ATTACK_POWER = 4;
+    private static final int WEAK_ATTACK_TIMES = 2;
+    private static final int DEBUFF_STACKS = 2;
+
 
     public SogBogWitch() {
         super(NAME,
@@ -53,6 +62,9 @@ public class SogBogWitch extends CustomMonster {
                 null);
 
         animation = new SpriterAnimation(Spansion.makeCharPath("Cultist.scml"));
+        //this.state.addAnimation(0,"Idle",true, 0.0f);
+        //AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+        //e.setTime(e.getEndTime() * MathUtils.random());
 
     }
 
@@ -73,19 +85,28 @@ public class SogBogWitch extends CustomMonster {
     public void takeTurn() {
         Spansion.logger.info("Entering \"Take Turn\"");
         switch(this.nextMove){
+            case 0: // Cast the Curse
+                AbstractDungeon.actionManager.addToBottom( new ApplyPowerAction(
+                        this, this,
+                        new StrengthPower(this, 1)
+                ));
+                break;
+            case 1: // Debuff Player
+                AbstractDungeon.actionManager.addToBottom( new ApplyPowerAction(
+                        AbstractDungeon.player, this,
+                        new WeakPower(AbstractDungeon.player, DEBUFF_STACKS, true)
+
+                ));
+                break;
+            case 2: // Attack
             default:
-                Spansion.logger.info("Entering switch-default.");
-                //AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom(
-                        new DamageAction(
-                                AbstractDungeon.player
-                                , new DamageInfo(this, 4)
-                        , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                AbstractDungeon.actionManager.addToBottom(
-                        new DamageAction(
-                                AbstractDungeon.player
-                                , new DamageInfo(this, 4)
-                                , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                for(int i = 0; i < WEAK_ATTACK_TIMES; i++) {
+                    AbstractDungeon.actionManager.addToBottom(
+                            new DamageAction(
+                                    AbstractDungeon.player
+                                    , new DamageInfo(this, WEAK_ATTACK_POWER)
+                                    , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                }
                 break;
         }
         Spansion.logger.info("Ending Switch.");
@@ -95,6 +116,20 @@ public class SogBogWitch extends CustomMonster {
 
     @Override
     protected void getMove(int i) {
-        this.setMove((byte) 0, Intent.ATTACK, 4, 2, true);
+        if(!curseCast){
+            this.setMove((byte) 0, Intent.BUFF);
+        }
+        else{
+            switch(this.nextMove){
+                case 1: this.setMove((byte) 2, Intent.ATTACK, WEAK_ATTACK_POWER, WEAK_ATTACK_TIMES, true);
+                    break;
+                case 2:
+                default:
+                    this.setMove((byte)1, Intent.DEBUFF);
+                    break;
+            }
+        }
     }
+
+
 }
