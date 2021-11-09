@@ -333,7 +333,6 @@ public class Spansion implements PostExhaustSubscriber,
 
     @Override
     public void receiveEditStrings() {
-        logger.info("You seeing this?");
         logger.info("Beginning to edit strings for mod with ID: " + getModID());
         // CardStrings
         BaseMod.loadCustomStringsFile(CardStrings.class,
@@ -351,6 +350,10 @@ public class Spansion implements PostExhaustSubscriber,
         // Event Strings
         BaseMod.loadCustomStringsFile(EventStrings.class,
                 getModID() + "Resources/localization/eng/Spansion-Event-Strings.json");
+
+        // Monster Strings
+        BaseMod.loadCustomStringsFile(MonsterStrings.class,
+                getModID() + "Resources/localization/eng/Spansion-Monster-Strings.json");
 
         // PotionStrings
         //BaseMod.loadCustomStringsFile(PotionStrings.class,

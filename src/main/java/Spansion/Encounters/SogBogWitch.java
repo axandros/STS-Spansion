@@ -65,7 +65,8 @@ public class SogBogWitch extends CustomMonster {
         //this.state.addAnimation(0,"Idle",true, 0.0f);
         //AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         //e.setTime(e.getEndTime() * MathUtils.random());
-
+        byte b = this.nextMove;
+        Spansion.logger.info("Default next move byte: " + b );
     }
 
     /*
@@ -90,6 +91,7 @@ public class SogBogWitch extends CustomMonster {
                         this, this,
                         new StrengthPower(this, 1)
                 ));
+                curseCast = true;
                 break;
             case 1: // Debuff Player
                 AbstractDungeon.actionManager.addToBottom( new ApplyPowerAction(
@@ -118,14 +120,19 @@ public class SogBogWitch extends CustomMonster {
     protected void getMove(int i) {
         if(!curseCast){
             this.setMove((byte) 0, Intent.BUFF);
+
         }
         else{
-            switch(this.nextMove){
+            byte b = this.nextMove;
+            if(this.nextMove == 0) {
+                b = (byte) (i/99 * 2 +1);
+                Spansion.logger.info("Switch on Byte: " + b);
+            }
+            switch(b){
                 case 1: this.setMove((byte) 2, Intent.ATTACK, WEAK_ATTACK_POWER, WEAK_ATTACK_TIMES, true);
                     break;
-                case 2:
+                case 2: this.setMove((byte)1, Intent.DEBUFF);
                 default:
-                    this.setMove((byte)1, Intent.DEBUFF);
                     break;
             }
         }
