@@ -1,13 +1,13 @@
 package Spansion.Encounters;
 
+import Spansion.Powers.WitchCursePower;
 import Spansion.Spansion;
 import basemod.abstracts.CustomMonster;
-import basemod.animations.AbstractAnimation;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -16,12 +16,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-
-import java.util.logging.Logger;
-
 
 /// The SogBog Witch
 // For her first move, she'll Cast a curse.
@@ -50,6 +46,8 @@ public class SogBogWitch extends CustomMonster {
     private static final int WEAK_ATTACK_TIMES = 2;
     private static final int DEBUFF_STACKS = 2;
 
+    public static final SpriterAnimation IDLE_ANIM =  new SpriterAnimation(Spansion.makeCharPath("Cultist_Idle.scml"));;
+    //public static final SpriterAnimation CAST_ANIM =  new SpriterAnimation(Spansion.makeCharPath("Cultist_Idle.scml"));;
 
     public SogBogWitch() {
         super(NAME,
@@ -61,12 +59,12 @@ public class SogBogWitch extends CustomMonster {
                 HB_H,
                 null);
 
-        animation = new SpriterAnimation(Spansion.makeCharPath("Cultist.scml"));
+        animation = IDLE_ANIM;
         //this.state.addAnimation(0,"Idle",true, 0.0f);
         //AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         //e.setTime(e.getEndTime() * MathUtils.random());
         byte b = this.nextMove;
-        Spansion.logger.info("Default next move byte: " + b );
+        //Spansion.logger.info("Default next move byte: " + b );
     }
 
     /*
@@ -87,9 +85,11 @@ public class SogBogWitch extends CustomMonster {
         Spansion.logger.info("Entering \"Take Turn\"");
         switch(this.nextMove){
             case 0: // Cast the Curse
+
                 AbstractDungeon.actionManager.addToBottom( new ApplyPowerAction(
                         this, this,
-                        new StrengthPower(this, 1)
+                        //new StrengthPower(this, 1)
+                    new WitchCursePower(this, this, 2)
                 ));
                 curseCast = true;
                 break;
@@ -97,11 +97,11 @@ public class SogBogWitch extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom( new ApplyPowerAction(
                         AbstractDungeon.player, this,
                         new WeakPower(AbstractDungeon.player, DEBUFF_STACKS, true)
-
                 ));
                 break;
             case 2: // Attack
             default:
+                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this ));
                 for(int i = 0; i < WEAK_ATTACK_TIMES; i++) {
                     AbstractDungeon.actionManager.addToBottom(
                             new DamageAction(
@@ -109,6 +109,7 @@ public class SogBogWitch extends CustomMonster {
                                     , new DamageInfo(this, WEAK_ATTACK_POWER)
                                     , AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                 }
+
                 break;
         }
         Spansion.logger.info("Ending Switch.");

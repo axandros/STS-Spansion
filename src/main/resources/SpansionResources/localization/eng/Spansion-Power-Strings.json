@@ -46,5 +46,12 @@
     "DESCRIPTIONS": [
       "At the end of your turn, gain block if in Drunken Stance, Draw next turn if Calm, and Exit Wrath if in Wrath.  Exiting Wrath Depletes this power."
     ]
+  },
+  "Spansion:WitchCursePower": {
+    "NAME": "Witch's Curse",
+    "DESCRIPTIONS": [
+      "If the witch dies while this is active, shuffle a ",
+      " into your deck."
+    ]
   }
 }
