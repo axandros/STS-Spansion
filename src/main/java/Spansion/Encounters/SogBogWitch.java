@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.SporeCloudPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
@@ -90,6 +91,7 @@ public class SogBogWitch extends CustomMonster {
                         this, this,
                         //new StrengthPower(this, 1)
                     new WitchCursePower(this, this, 2)
+                    //    new SporeCloudPower(this, 2)
                 ));
                 curseCast = true;
                 break;

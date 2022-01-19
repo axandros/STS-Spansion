@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -34,7 +35,7 @@ public class WitchCursePower extends AbstractPower {
     private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
-    public static final AbstractCard CURSE_TO_ADD = new Pain();
+    public static final AbstractCard CURSE_TO_ADD = CardLibrary.getCard("Pain").makeCopy();
 
     private boolean _justApplied = true;
 
@@ -60,10 +61,14 @@ public class WitchCursePower extends AbstractPower {
         description = DESCRIPTIONS[0] + CURSE_TO_ADD.name + DESCRIPTIONS[1];
     }
 
+
+
+
     @Override
     public void onDeath() {
-        AbstractDungeon.actionManager.addToBottom(new AddCardToDeckAction(CURSE_TO_ADD.makeCopy()));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(CURSE_TO_ADD.makeCopy(), 1));
+        Spansion.logger.info("Power on Death Called");
+        AbstractDungeon.actionManager.addToTop(new AddCardToDeckAction(CURSE_TO_ADD.makeCopy()));
+        //AbstractDungeon.actionManager.addToTop(new MakeTempCardInDiscardAction(CURSE_TO_ADD.makeCopy(), 1));
     }
 
 

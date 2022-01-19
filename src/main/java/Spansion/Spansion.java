@@ -46,9 +46,8 @@ import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.monsters.beyond.Deca;
 import com.megacrit.cardcrawl.monsters.beyond.Donu;
 import com.megacrit.cardcrawl.monsters.city.Healer;
-import com.megacrit.cardcrawl.monsters.exordium.SlaverBlue;
-import com.megacrit.cardcrawl.monsters.exordium.SlaverRed;
-import com.megacrit.cardcrawl.monsters.exordium.SlimeBoss;
+import com.megacrit.cardcrawl.monsters.city.SnakePlant;
+import com.megacrit.cardcrawl.monsters.exordium.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import basemod.BaseMod;
@@ -253,16 +252,31 @@ public class Spansion implements PostExhaustSubscriber,
         };
         BaseMod.addMonster("Spansion:AdventureParty", () -> new MonsterGroup(adventureParty));
         */ BaseMod.addMonster("Spansion:AdventureParty", () -> new MonsterGroup(new AbstractMonster[] {
-                new Healer(150,0),
-                new SlaverBlue(-150,0)
+                new GremlinFat(150,0),
+                new GremlinWizard(-150,0)
         }));
-        BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:AdventureParty", 2.0f));
-        BaseMod.addMonster("Spansion:Deca", Donu.NAME, () -> new Deca());
-        BaseMod.addStrongMonsterEncounter(TheCity.ID, new MonsterInfo("Spansion:Deca", 2.0f));
 
-
+        BaseMod.addMonster("Spansion:EliteSnake", Donu.NAME, () -> new SnakePlant(0,0));
         BaseMod.addMonster("Spansion:SogBogWitch", SogBogWitch.NAME, () -> new SogBogWitch());
+
+        BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:AdventureParty", 2.0f));
+        BaseMod.addStrongMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:SogBogWitch", 2.0f));
+        BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo("Spansion:Deca", 2.0f));
+
+        String boss_image =  "SpansionResources/images/ui/map/Spaghetti_Image.png";
+        String boss_outline =  "SpansionResources/images/ui/map/Spaghetti_Outline.png";
+
+        BaseMod.addBoss(Exordium.ID, "Spansion:WrithingMass", boss_image, boss_outline);
+
+        /*
         BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:SogBogWitch", 2.0f));
+
+        BaseMod.addMonster("Spansion:SogBogPet", SogBogWitch.NAME,
+                () -> new MonsterGroup(new AbstractMonster[] {
+                        new LouseNormal(150,0),
+                        new SogBogWitch()} ) );
+        BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:SogBogPet", 2.0f));
+        */
     }
 
 
