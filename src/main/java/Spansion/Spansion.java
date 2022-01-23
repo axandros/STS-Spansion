@@ -45,6 +45,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.monsters.beyond.Deca;
 import com.megacrit.cardcrawl.monsters.beyond.Donu;
+import com.megacrit.cardcrawl.monsters.beyond.WrithingMass;
 import com.megacrit.cardcrawl.monsters.city.Healer;
 import com.megacrit.cardcrawl.monsters.city.SnakePlant;
 import com.megacrit.cardcrawl.monsters.exordium.*;
@@ -256,16 +257,16 @@ public class Spansion implements PostExhaustSubscriber,
                 new GremlinWizard(-150,0)
         }));
 
-        BaseMod.addMonster("Spansion:EliteSnake", Donu.NAME, () -> new SnakePlant(0,0));
+        BaseMod.addMonster("Spansion:EliteSnake", SnakePlant.NAME, () -> new SnakePlant(0,0));
         BaseMod.addMonster("Spansion:SogBogWitch", SogBogWitch.NAME, () -> new SogBogWitch());
 
         BaseMod.addMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:AdventureParty", 2.0f));
         BaseMod.addStrongMonsterEncounter(Exordium.ID, new MonsterInfo("Spansion:SogBogWitch", 2.0f));
-        BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo("Spansion:Deca", 2.0f));
+        BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo("Spansion:EliteSnake", 2.0f));
 
         String boss_image =  "SpansionResources/images/ui/map/Spaghetti_Image.png";
         String boss_outline =  "SpansionResources/images/ui/map/Spaghetti_Outline.png";
-
+        BaseMod.addMonster("Spansion:WrithingMass", WrithingMass.NAME, () -> new WrithingMass());
         BaseMod.addBoss(Exordium.ID, "Spansion:WrithingMass", boss_image, boss_outline);
 
         /*
